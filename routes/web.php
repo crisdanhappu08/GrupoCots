@@ -17,6 +17,13 @@ Route::get('/estructura-organizacional', function () {
 Route::get('/Servicios', function () {
     return view('Servicios');
 });
+Route::get('/Politicas-de-seguridad', function () {
+    return view('politicas');
+});
+Route::get('/Contactanos', function () {
+    return view('contacto');
+});
+
 
 
 

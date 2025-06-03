@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estructura Organizacional | Grupo COTS</title>
+    <title>Políticas | Grupo COTS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -153,12 +153,12 @@
             }
         }
 
-        @keyframes floatingY {
+        @keyframes floatingIcon {
             0%, 100% {
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-15px);
+                transform: translateY(-8px);
             }
         }
 
@@ -192,10 +192,6 @@
 
         .scale-up {
             animation: scaleUp 0.8s ease forwards;
-        }
-
-        .float-y {
-            animation: floatingY 4s ease-in-out infinite;
         }
 
         .delay-100 {
@@ -331,438 +327,257 @@
             z-index: 1001;
         }
 
-        /* Hero Section */
-        .hero {
-            background-color: var(--dark);
+        /* Page Banner */
+        .page-banner {
             position: relative;
-            height: 500px;
+            background-color: var(--darker);
+            padding: 180px 0 100px;
             overflow: hidden;
-            margin-top: 80px;
-        }
-
-        .hero-bg-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.3;
-        }
-
-        .hero-bg-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(26, 158, 176, 0.85) 0%, rgba(106, 125, 179, 0.85) 100%);
-        }
-
-        .hero-content {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text {
-            max-width: 800px;
+            text-align: center;
             color: var(--white);
         }
 
-        .hero-title {
+        .page-banner-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-overlay);
+            z-index: 1;
+        }
+
+        .page-banner-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 2;
+            opacity: 0.5;
+        }
+
+        .page-banner-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .page-banner-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: floatingIcon 3s ease-in-out infinite;
+        }
+
+        .page-banner-icon::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        .page-banner h1 {
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 20px;
             color: var(--white);
-            position: relative;
-            display: inline-block;
         }
 
-        .hero-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100px;
-            height: 5px;
-            background: var(--white);
-            border-radius: 2.5px;
-        }
-
-        .hero-description {
+        .page-banner p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
-            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 20px;
             color: rgba(255, 255, 255, 0.9);
         }
 
-        .hero-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--white);
-            color: var(--primary);
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            box-shadow: var(--shadow-sharp);
-        }
-
-        .hero-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-btn i {
-            font-size: 1.2rem;
-        }
-
-        /* About Section */
-        .about-section {
-            position: relative;
+        /* Intro Section */
+        .intro-section {
             background-color: var(--white);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
             position: relative;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-large);
-            height: 500px;
         }
 
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .about-content {
-            padding: 20px;
-        }
-
-        .about-content h2 {
+        .intro-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
             color: var(--dark);
-            margin-bottom: 25px;
             position: relative;
             display: inline-block;
         }
 
-        .about-content h2::after {
+        .intro-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 0;
             width: 80px;
             height: 4px;
             background: var(--gradient-primary);
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
             border-radius: var(--border-radius-xs);
         }
 
-        .about-content p {
-            font-size: 1.05rem;
+        .intro-description {
+            font-size: 1.1rem;
             line-height: 1.8;
-            margin-bottom: 20px;
             color: var(--text-light);
+            margin-bottom: 40px;
         }
 
-        .about-highlight {
+        /* Policies Section */
+        .policies-section {
             background-color: var(--light);
-            border-left: 5px solid var(--primary);
-            padding: 20px 30px;
-            margin: 30px 0;
-            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
-        }
-
-        .about-highlight p {
-            font-style: italic;
-            margin-bottom: 0;
-        }
-
-        /* Values Section */
-        .values-section {
             position: relative;
-            background-color: var(--light);
+            overflow: hidden;
         }
 
-        .values-container {
+        .policies-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+        }
+
+        .policies-section::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+        }
+
+        .policies-container {
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-primary);
-            border-radius: var(--border-radius-xs);
-        }
-
-        .values-wrapper {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .values-column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .value-card {
+        .policy-card {
             background: var(--white);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            padding: 30px;
+            margin-bottom: 40px;
+            overflow: hidden;
             transition: var(--transition);
         }
 
-        .value-card:hover {
+        .policy-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-large);
         }
 
-        .value-icon {
+        .policy-header {
+            background: var(--gradient-primary);
+            background-size: 200% 200%;
+            animation: gradientBg 5s ease infinite;
+            color: var(--white);
+            padding: 25px 30px;
             display: flex;
             align-items: center;
+            gap: 20px;
+        }
+
+        .policy-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .policy-title {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        .policy-body {
+            padding: 30px;
+        }
+
+        .policy-description {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .policy-points {
+            margin-top: 20px;
+        }
+
+        .policy-point {
+            display: flex;
+            align-items: flex-start;
             margin-bottom: 20px;
             gap: 15px;
         }
 
-        .value-icon i {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
+        .policy-point:last-child {
+            margin-bottom: 0;
+        }
+
+        .policy-point-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--primary-light);
             color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            box-shadow: var(--shadow);
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 3px;
         }
 
-        .value-icon h3 {
-            margin: 0;
-            font-size: 1.4rem;
-        }
-
-        .value-description {
+        .policy-point-text {
+            flex: 1;
             color: var(--text-light);
-            font-size: 1rem;
-            line-height: 1.6;
+        }
+
+        .policy-point-text p {
             margin-bottom: 0;
-        }
-
-        /* Team Structure Section */
-        .team-section {
-            position: relative;
-            background-color: var(--white);
-            padding-bottom: 120px;
-        }
-
-        .team-intro {
-            max-width: 800px;
-            margin: 0 auto 60px;
-            text-align: center;
-        }
-
-        .team-intro p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .team-structure {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 60px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .structure-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(45deg, var(--light) 25%, transparent 25%),
-                linear-gradient(-45deg, var(--light) 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, var(--light) 75%),
-                linear-gradient(-45deg, transparent 75%, var(--light) 75%);
-            background-size: 20px 20px;
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .structure-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .structure-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .structure-header h3 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .structure-header p {
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .structure-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .structure-level {
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .level-main {
-            margin-bottom: 30px;
-        }
-
-        .level-main::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            width: 2px;
-            height: 30px;
-            background-color: var(--primary);
-        }
-
-        .structure-node {
-            background: var(--primary);
-            color: var(--white);
-            padding: 25px 40px;
-            border-radius: var(--border-radius);
-            text-align: center;
-            position: relative;
-            min-width: 200px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .level-main .structure-node {
-            background: var(--gradient-primary);
-            padding: 30px 50px;
-        }
-
-        .structure-node h4 {
-            margin-bottom: 5px;
-            color: var(--white);
-        }
-
-        .structure-node p {
-            margin-bottom: 0;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .level-secondary {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            position: relative;
-        }
-
-        .level-secondary::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: 25%;
-            width: 50%;
-            height: 2px;
-            background-color: var(--primary);
-        }
-
-        .secondary-item {
-            position: relative;
-        }
-
-        .secondary-item::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            width: 2px;
-            height: 30px;
-            background-color: var(--primary);
-        }
-
-        .structure-subnode {
-            background: var(--secondary);
-            color: var(--white);
-            padding: 20px 30px;
-            border-radius: var(--border-radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .structure-subnode:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-large);
-        }
-
-        .structure-node:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-large);
         }
 
         /* CTA Section */
         .cta-section {
+            position: relative;
             background: var(--gradient-primary);
             color: var(--white);
             text-align: center;
-            position: relative;
+            padding: 100px 0;
             overflow: hidden;
-            padding: 80px 0;
         }
 
         .cta-section::before {
@@ -773,7 +588,7 @@
             width: 100%;
             height: 100%;
             background-image: url('data:image/svg+xml,<svg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23fff" fill-opacity="0.1"><path d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /></g></g></svg>');
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         .cta-content {
@@ -913,68 +728,45 @@
         }
 
         /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .values-wrapper {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .values-column {
-                flex-direction: row;
-                gap: 20px;
-            }
-
-            .value-card {
-                width: 50%;
-            }
-        }
-
         @media (max-width: 992px) {
             section {
                 padding: 80px 0;
             }
 
-            .hero {
-                height: 400px;
+            .page-banner {
+                padding: 150px 0 80px;
             }
 
-            .hero-title {
+            .page-banner h1 {
                 font-size: 2.8rem;
             }
 
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .page-banner-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 3.5rem;
             }
 
-            .about-image {
-                height: 400px;
-                order: -1;
+            .intro-title {
+                font-size: 2.2rem;
             }
 
-            .values-column {
-                flex-direction: column;
+            .policy-header {
+                padding: 20px 25px;
             }
 
-            .value-card {
-                width: 100%;
-            }
-
-            .team-structure {
-                padding: 40px 20px;
-            }
-
-            .level-secondary {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .level-secondary::before {
-                display: none;
-            }
-
-            .secondary-item::before {
+            .policy-icon {
+                width: 50px;
                 height: 50px;
+                font-size: 24px;
+            }
+
+            .policy-title {
+                font-size: 1.4rem;
+            }
+
+            .policy-body {
+                padding: 25px;
             }
 
             .menu-toggle {
@@ -1030,25 +822,20 @@
         }
 
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.3rem;
+            .page-banner h1 {
+                font-size: 2.5rem;
             }
 
-            .hero-description {
+            .page-banner p {
                 font-size: 1.1rem;
             }
 
-            .hero-btn {
-                padding: 12px 25px;
+            .intro-title {
+                font-size: 2rem;
+            }
+
+            .intro-description {
                 font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .about-content h2 {
-                font-size: 2.2rem;
             }
 
             .cta-title {
@@ -1058,6 +845,11 @@
             .cta-text {
                 font-size: 1.1rem;
             }
+
+            .cta-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1065,36 +857,40 @@
                 padding: 60px 0;
             }
 
-            .hero {
-                height: 450px;
+            .page-banner {
+                padding: 140px 0 70px;
             }
 
-            .hero-title {
-                font-size: 2rem;
+            .page-banner h1 {
+                font-size: 2.2rem;
             }
 
-            .hero-description {
-                font-size: 1rem;
+            .page-banner-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.8rem;
             }
 
-            .section-title, .about-content h2 {
+            .intro-title {
                 font-size: 1.8rem;
             }
 
-            .value-icon h3 {
-                font-size: 1.2rem;
+            .policy-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 15px;
             }
 
-            .about-content p, .team-intro p {
+            .policy-title {
+                font-size: 1.3rem;
+            }
+
+            .policy-body {
+                padding: 20px 15px;
+            }
+
+            .policy-description {
                 font-size: 1rem;
-            }
-
-            .structure-node, .structure-subnode {
-                padding: 15px;
-            }
-
-            .structure-node h4, .structure-subnode h4 {
-                font-size: 1.1rem;
             }
         }
 
@@ -1106,7 +902,6 @@
     text-decoration: underline;
   }
 </style>
-
 <body>
     <!-- Header -->
     <header class="header" id="header">
@@ -1120,154 +915,211 @@
                 <i class="fas fa-bars"></i>
             </div>
 
-           <div class="nav-menu" id="navMenu">
+             <div class="nav-menu" id="navMenu">
                 <ul class="nav-list">
                     <li class="nav-item"><a href="home" class="nav-link active">Inicio</a></li>
                     <li class="nav-item"><a href="Nosotros" class="nav-link">Nosotros</a></li>
                     <li class="nav-item"><a href="Servicios" class="nav-link">Servicios</a></li>
                     <li class="nav-item"><a href="estructura-organizacional" class="nav-link">estructura-organizacional</a></li>
-                    <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link">Políticas</a></li>
+                    <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link" class="active" >Políticas</a></li>
                 </ul>
                 <a href="Contactanos" class="header-btn">Contáctanos <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg-pattern"></div>
-        <div class="hero-bg-overlay"></div>
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title fade-in-up">Estructura Organizacional</h1>
-                <p class="hero-description fade-in-up delay-200">Conozca nuestra organización, valores y el equipo que hace posible brindar soluciones tecnológicas de calidad.</p>
-                <a href="#team" class="hero-btn fade-in-up delay-400">
-                    <i class="fas fa-users"></i>
-                    Conocer nuestro equipo
-                </a>
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="page-banner-bg"></div>
+        <div class="page-banner-pattern"></div>
+        <div class="page-banner-content">
+            <div class="page-banner-icon fade-in-up">
+                <i class="fas fa-shield-alt"></i>
             </div>
+            <h1 class="fade-in-up delay-200">Políticas de Seguridad</h1>
+            <p class="fade-in-up delay-300">Nuestro compromiso con la protección y confidencialidad de la información</p>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about-section">
+    <!-- Intro Section -->
+    <section class="intro-section">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-content fade-in-left">
-                    <h2>Quiénes Somos</h2>
-                    <p>Grupo COTS es una empresa mexicana fundada en el año 2016 con el propósito de brindar soluciones tecnológicas eficientes al sector público y privado. Desde nuestros inicios, nos hemos enfocado en el desarrollo de sistemas informáticos y aplicaciones web que permiten mejorar la toma de decisiones mediante el análisis y la gestión efectiva de la información.</p>
-
-                    <p>A lo largo de los años, hemos identificado nuevas necesidades en diversos sectores, lo cual nos ha impulsado a ampliar nuestra oferta de servicios y trabajar en equipo para ofrecer soluciones innovadoras, confiables y adaptadas a cada contexto.</p>
-
-                    <div class="about-highlight fade-in-left delay-300">
-                        <p>Nuestra meta es continuar creciendo como un referente en el desarrollo tecnológico en México y contribuir al avance digital de las organizaciones que confían en nosotros.</p>
-                    </div>
-                </div>
-
-                <div class="about-image fade-in-right">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Equipo de trabajo Grupo COTS">
-                </div>
+            <div class="intro-content">
+                <h2 class="intro-title fade-in-up">Nuestro Compromiso</h2>
+                <p class="intro-description fade-in-up delay-200">Grupo COTS se compromete a proteger la información, los datos personales y los sistemas tecnológicos involucrados en la operación de sus plataformas. Las siguientes políticas de seguridad reflejan este compromiso y nuestro esfuerzo por mantener los más altos estándares de protección y confidencialidad.</p>
             </div>
         </div>
     </section>
 
-    <!-- Values Section -->
-    <section class="values-section">
-        <div class="container values-container">
-            <h2 class="section-title fade-in-up">Nuestros Valores</h2>
-
-            <div class="values-wrapper">
-                <div class="values-column">
-                    <div class="value-card fade-in-up delay-200">
-                        <div class="value-icon">
-                            <i class="fas fa-lightbulb"></i>
-                            <h3>Innovación</h3>
-                        </div>
-                        <p class="value-description">Buscamos constantemente nuevas formas de mejorar nuestros productos y servicios, incorporando tecnologías emergentes para ofrecer soluciones de vanguardia.</p>
+    <!-- Policies Section -->
+    <section class="policies-section">
+        <div class="container policies-container">
+            <!-- Policy 1: Data Protection -->
+            <div class="policy-card fade-in-up">
+                <div class="policy-header">
+                    <div class="policy-icon">
+                        <i class="fas fa-user-shield"></i>
                     </div>
-
-                    <div class="value-card fade-in-up delay-300">
-                        <div class="value-icon">
-                            <i class="fas fa-shield-alt"></i>
-                            <h3>Responsabilidad</h3>
-                        </div>
-                        <p class="value-description">Asumimos el compromiso con nuestros clientes y el impacto de nuestro trabajo, garantizando la confidencialidad y seguridad de la información.</p>
-                    </div>
+                    <h3 class="policy-title">Protección de Datos Personales</h3>
                 </div>
-
-                <div class="values-column">
-                    <div class="value-card fade-in-up delay-400">
-                        <div class="value-icon">
-                            <i class="fas fa-award"></i>
-                            <h3>Profesionalismo</h3>
+                <div class="policy-body">
+                    <div class="policy-points">
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="policy-point-text">
+                                <p>La empresa garantiza que los datos personales recopilados a través de sus plataformas serán tratados de manera confidencial y conforme a la legislación aplicable.</p>
+                            </div>
                         </div>
-                        <p class="value-description">Mantenemos altos estándares de calidad en todos nuestros desarrollos y servicios, aplicando las mejores prácticas de la industria.</p>
-                    </div>
-
-                    <div class="value-card fade-in-up delay-500">
-                        <div class="value-icon">
-                            <i class="fas fa-users"></i>
-                            <h3>Colaboración</h3>
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="policy-point-text">
+                                <p>Se limita el acceso a la información personal únicamente al personal autorizado y solo para fines estrictamente laborales o de atención a clientes.</p>
+                            </div>
                         </div>
-                        <p class="value-description">Creemos en el poder del trabajo en equipo y las alianzas estratégicas para crear soluciones más completas y efectivas para nuestros clientes.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Team Structure Section -->
-    <section id="team" class="team-section">
-        <div class="container">
-            <h2 class="section-title fade-in-up">Estructura del Equipo</h2>
-
-            <div class="team-intro fade-in-up delay-200">
-                <p>Nuestro equipo está conformado por profesionales especializados en distintas áreas, trabajando bajo una estructura organizativa flexible y colaborativa que nos permite responder ágilmente a los cambios tecnológicos y garantizar un servicio de alta calidad.</p>
-            </div>
-
-            <div class="team-structure fade-in-up delay-300">
-                <div class="structure-bg"></div>
-                <div class="structure-content">
-                    <div class="structure-header">
-                        <h3>Equipo Multidisciplinario</h3>
-                        <p>Organización estratégica para brindar soluciones integrales</p>
+            <!-- Policy 2: Confidentiality -->
+            <div class="policy-card fade-in-up delay-100">
+                <div class="policy-header">
+                    <div class="policy-icon">
+                        <i class="fas fa-lock"></i>
                     </div>
-
-                    <div class="structure-grid">
-                        <div class="structure-level level-main">
-                            <div class="structure-node">
-                                <h4>Dirección General</h4>
-                                <p>Visión estratégica y supervisión del cumplimiento de objetivos</p>
+                    <h3 class="policy-title">Confidencialidad</h3>
+                </div>
+                <div class="policy-body">
+                    <div class="policy-points">
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="policy-point-text">
+                                <p>Toda la información proporcionada por los usuarios, clientes o instituciones es considerada confidencial.</p>
                             </div>
                         </div>
-
-                        <div class="structure-level level-secondary">
-                            <div class="secondary-item">
-                                <div class="structure-subnode">
-                                    <h4>Área de Desarrollo de Software</h4>
-                                    <p>Creación, mantenimiento y mejora de plataformas digitales</p>
-                                </div>
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
                             </div>
-
-                            <div class="secondary-item">
-                                <div class="structure-subnode">
-                                    <h4>Área de Consultoría y Análisis</h4>
-                                    <p>Entendimiento de necesidades y propuesta de soluciones</p>
-                                </div>
+                            <div class="policy-point-text">
+                                <p>El personal de Grupo COTS está obligado a firmar acuerdos de confidencialidad y a seguir protocolos estrictos para el manejo de la información.</p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                            <div class="secondary-item">
-                                <div class="structure-subnode">
-                                    <h4>Soporte Técnico</h4>
-                                    <p>Acompañamiento continuo a los usuarios</p>
-                                </div>
+            <!-- Policy 3: Technology Security -->
+            <div class="policy-card fade-in-up delay-200">
+                <div class="policy-header">
+                    <div class="policy-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="policy-title">Seguridad Tecnológica</h3>
+                </div>
+                <div class="policy-body">
+                    <div class="policy-points">
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
                             </div>
+                            <div class="policy-point-text">
+                                <p>Se utilizan herramientas actualizadas y protocolos de seguridad para proteger los sistemas contra accesos no autorizados, ataques cibernéticos y pérdida de información.</p>
+                            </div>
+                        </div>
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="policy-point-text">
+                                <p>Las plataformas desarrolladas cuentan con controles de autenticación, cifrado y respaldo de datos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                            <div class="secondary-item">
-                                <div class="structure-subnode">
-                                    <h4>Administración y Gestión</h4>
-                                    <p>Coordinación de recursos y procesos internos</p>
-                                </div>
+            <!-- Policy 4: Access Control -->
+            <div class="policy-card fade-in-up delay-300">
+                <div class="policy-header">
+                    <div class="policy-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3 class="policy-title">Control de Accesos</h3>
+                </div>
+                <div class="policy-body">
+                    <div class="policy-points">
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="policy-point-text">
+                                <p>El acceso a los sistemas y plataformas se otorga según el rol y perfil del usuario.</p>
+                            </div>
+                        </div>
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="policy-point-text">
+                                <p>Los administradores y usuarios deben utilizar credenciales seguras, y el sistema requiere cambios periódicos de contraseñas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policy 5: Updates and Maintenance -->
+            <div class="policy-card fade-in-up delay-400">
+                <div class="policy-header">
+                    <div class="policy-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="policy-title">Actualización y Mantenimiento</h3>
+                </div>
+                <div class="policy-body">
+                    <div class="policy-points">
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="policy-point-text">
+                                <p>Los sistemas informáticos y las aplicaciones web desarrolladas por Grupo COTS se actualizan periódicamente para mejorar su seguridad y funcionalidad.</p>
+                            </div>
+                        </div>
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="policy-point-text">
+                                <p>Se realizan auditorías internas de seguridad y revisiones técnicas frecuentes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policy 6: Platform Usage Responsibility -->
+            <div class="policy-card fade-in-up delay-500">
+                <div class="policy-header">
+                    <div class="policy-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="policy-title">Responsabilidad en el Uso de la Plataforma</h3>
+                </div>
+                <div class="policy-body">
+                    <div class="policy-points">
+                        <div class="policy-point">
+                            <div class="policy-point-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="policy-point-text">
+                                <p>Los usuarios deben hacer un uso adecuado de los sistemas y plataformas, absteniéndose de realizar acciones que comprometan la seguridad o el correcto funcionamiento de los mismos.</p>
                             </div>
                         </div>
                     </div>
@@ -1280,9 +1132,9 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content fade-in-up">
-                <h2 class="cta-title">¿Listo para trabajar con nosotros?</h2>
-                <p class="cta-text">Descubra cómo nuestro equipo puede ayudarle a transformar digitalmente su organización.</p>
-                <a href="Contactanos" class="cta-btn">Contáctenos hoy mismo <i class="fas fa-arrow-right"></i></a>
+                <h2 class="cta-title">¿Tiene preguntas sobre nuestras políticas?</h2>
+                <p class="cta-text">Estamos comprometidos con la transparencia. Contáctenos para obtener más información sobre nuestras políticas de seguridad.</p>
+                <a href="Contactanos" class="cta-btn">Contactar ahora <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -1310,14 +1162,15 @@
                             <i class="fas fa-envelope"></i>
                             <p>contacto@grupocots.com</p>
                         </div>-->
-                        <div class="contact-item">
+                                        <div class="contact-item">
                             <i class="fas fa-globe"></i>
    <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
 </div>
+
                     </div>
                 </div>
 
-              <div class="footer-links">
+                 <div class="footer-links">
                     <h4>Enlaces Rápidos</h4>
                     <ul class="footer-nav">
                         <li><a href="home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
@@ -1329,7 +1182,7 @@
                     </ul>
                 </div>
 
-                 <div class="footer-links">
+             <div class="footer-links">
                     <h4>Nuestros Servicios</h4>
                     <ul class="footer-nav">
                         <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
@@ -1435,27 +1288,7 @@
         // Reveal elements as they come into view during scroll
         window.addEventListener('scroll', revealOnScroll);
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    const headerHeight = document.getElementById('header').offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
     </script>
 </body>
 </html>

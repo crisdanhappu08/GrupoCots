@@ -1059,9 +1059,9 @@
 </head>
 <body>
     <!-- Preloader -->
-    <div class="preloader" id="preloader">
+   <!-- <div class="preloader" id="preloader">
         <div class="loader"></div>
-    </div>
+    </div>-->
 
     <!-- Header -->
     <header id="header">
@@ -1081,10 +1081,9 @@
                     <li><a href="Nosotros" class="active">Nosotros</a></li>
                     <li><a href="Servicios">Servicios</a></li>
                     <li><a href="estructura-organizacional">Estructura organizacional</a></li>
-                    <li><a href="Contacto">Contacto</a></li>
-                    <li><a href="Politicas">Políticas</a></li>
+                    <li><a href="Politicas-de-seguridad">Políticas</a></li>
                 </ul>
-                <a href="contacto.html" class="contact-btn">Contáctanos <i class="fas fa-arrow-right"></i></a>
+                <a href="Contactanos" class="contact-btn">Contáctanos <i class="fas fa-arrow-right"></i></a>
             </nav>
         </div>
     </header>
@@ -1357,32 +1356,27 @@
                         <span class="logo-cots">COTS</span>
                     </a>
                     <p style="margin-top: 20px;">Empresa líder en desarrollo de sistemas informáticos y aplicaciones web con la más alta e innovadora tecnología para contribuir al desarrollo tecnológico en México y en el extranjero.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    </div>
+
                 </div>
 
-               <div class="footer-links">
+                <div class="footer-links">
                     <h4>Enlaces Rápidos</h4>
                     <ul class="footer-nav">
                         <li><a href="home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
                         <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
                         <li><a href="Servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
                         <li><a href="estructura-organizacional"><i class="fas fa-chevron-right"></i> estructura-organizacional</a></li>
-                        <li><a href="Contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
-                        <li><a href="Politicas"><i class="fas fa-chevron-right"></i> Políticas</a></li>
+                        <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                        <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> Políticas</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-links">
+                 <div class="footer-links">
                     <h4>Nuestros Servicios</h4>
                     <ul class="footer-nav">
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
+                        <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
+                        <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
+                        <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
 
                     </ul>
                 </div>
@@ -1391,20 +1385,20 @@
                     <div class="contact-info">
                         <div>
                             <i class="fas fa-map-marker-alt"></i>
-                            <p>Ciudad de México, México</p>
+                            <p>Arizona,Pima</p>
                         </div>
                         <div>
                             <i class="fas fa-phone"></i>
-                            <p>+52 55 1234 5678</p>
+                            <p>+1 928 750 4918</p>
                         </div>
-                        <div>
+                      <!--  <div>
                             <i class="fas fa-envelope"></i>
                             <p>contacto@grupocots.com</p>
-                        </div>
-                        <div>
+                        </div>-->
+                                       <div class="contact-item">
                             <i class="fas fa-globe"></i>
-                            <p>grupocots.godaddysites.com</p>
-                        </div>
+   <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
+</div>
                     </div>
                 </div>
             </div>

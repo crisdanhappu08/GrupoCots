@@ -1504,6 +1504,13 @@
         }
     </style>
 </head>
+<style>
+  .contact-item a {
+    color: blue;
+    text-decoration: underline;
+  }
+</style>
+
 <body>
     <!-- Header -->
     <header class="header" id="header">
@@ -1523,9 +1530,9 @@
                     <li class="nav-item"><a href="Nosotros" class="nav-link">Nosotros</a></li>
                     <li class="nav-item"><a href="Servicios" class="nav-link">Servicios</a></li>
                     <li class="nav-item"><a href="estructura-organizacional" class="nav-link">estructura-organizacional</a></li>
-                    <li class="nav-item"><a href="Politicas" class="nav-link">Políticas</a></li>
+                    <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link">Políticas</a></li>
                 </ul>
-                <a href="contacto.html" class="header-btn">Contáctanos <i class="fas fa-arrow-right"></i></a>
+                <a href="Contactanos" class="header-btn">Contáctanos <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </header>
@@ -1543,8 +1550,8 @@
                         <h1 class="hero-title">Transformamos el futuro<br>con tecnología</h1>
                         <p style="color: #f8f9faa2" class="hero-subtitle">Desarrollamos sistemas y aplicaciones web con la más alta tecnología para impulsar la eficiencia de su empresa.</p>
                         <div class="hero-btn-group">
-                            <a href="servicios.html" class="hero-btn btn-primary"><i class="fas fa-laptop-code"></i> Nuestros Servicios</a>
-                            <a href="contacto.html" class="hero-btn btn-outline"><i class="fas fa-headset"></i> Solicitar Información</a>
+                            <a href="Servicios" class="hero-btn btn-primary"><i class="fas fa-laptop-code"></i> Nuestros Servicios</a>
+                            <a href="Contactanos" class="hero-btn btn-outline"><i class="fas fa-headset"></i> Solicitar Información</a>
                         </div>
                     </div>
                 </div>
@@ -1560,8 +1567,8 @@
                         <h1 class="hero-title">Soluciones tecnológicas<br>a su medida</h1>
                         <p style="color: #f8f9faa2" class="hero-subtitle">Creamos sistemas personalizados que se adaptan perfectamente a las necesidades específicas de su negocio.</p>
                         <div class="hero-btn-group">
-                            <a href="nosotros.html" class="hero-btn btn-primary"><i class="fas fa-users"></i> Conózcanos</a>
-                            <a href="contacto.html" class="hero-btn btn-outline"><i class="fas fa-paper-plane"></i> Contáctenos</a>
+                            <a href="Nosotros" class="hero-btn btn-primary"><i class="fas fa-users"></i> Conózcanos</a>
+                            <a href="Contactanos" class="hero-btn btn-outline"><i class="fas fa-paper-plane"></i> Contáctenos</a>
                         </div>
                     </div>
                 </div>
@@ -1577,8 +1584,8 @@
                         <h1 class="hero-title">Innovando desde 2016<br>para su crecimiento</h1>
                         <p style="color: #f8f9faa2" class="hero-subtitle">Contribuimos al desarrollo tecnológico con soluciones innovadoras que potencian el crecimiento empresarial.</p>
                         <div class="hero-btn-group">
-                            <a href="servicios.html#cots-nom" class="hero-btn btn-primary"><i class="fas fa-shield-alt"></i> COTS NOM-035</a>
-                            <a href="servicios.html#cots-clinico" class="hero-btn btn-outline"><i class="fas fa-heartbeat"></i> COTS Clínico</a>
+                            <a href="Servicios#cots-nom" class="hero-btn btn-primary"><i class="fas fa-shield-alt"></i> COTS NOM-035</a>
+                            <a href="Servicios#cots-clinico" class="hero-btn btn-outline"><i class="fas fa-heartbeat"></i> COTS Clínico</a>
                         </div>
                     </div>
                 </div>
@@ -1604,12 +1611,6 @@
                 <i class="fas fa-arrow-right"></i>
             </div>
         </div>
-
-        <!-- Scroll Down -->
-        <a href="#about" class="scroll-down">
-            <span>Descubrir más</span>
-            <i class="fas fa-chevron-down"></i>
-        </a>
     </section>
 
     <!-- About Section -->
@@ -1695,7 +1696,7 @@
                     </div>
                     <div class="service-body">
                         <p class="service-text">Aplicación web con portal para empresas y empleados que facilita el cumplimiento de la Norma 035-STPS-2018, relacionada con los factores de riesgo psicosocial.</p>
-                        <a href="servicios.html#cots-nom" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        <a href="Servicios#cots-nom" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -1709,7 +1710,7 @@
                     </div>
                     <div class="service-body">
                         <p class="service-text">Sistema de control administrativo integral para instituciones educativas de todos los niveles, optimizando gestión de alumnos, profesores y recursos.</p>
-                        <a href="servicios.html#cots-educativo" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        <a href="Servicios#cots-educativo" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -1723,7 +1724,7 @@
                     </div>
                     <div class="service-body">
                         <p class="service-text">Software para una mejor experiencia de pacientes y proveedores de salud, con gestión eficiente de citas, historiales médicos y seguimiento de tratamientos.</p>
-                        <a href="servicios.html#cots-clinico" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        <a href="Servicios#cots-clinico" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1744,7 +1745,7 @@
                     <div class="mv-content">
                         <h3 class="mv-title"><i class="fas fa-bullseye"></i> Misión</h3>
                         <p class="mv-text">Ser la mejor empresa en desarrollo y soporte tecnológico para la población en general, así como para las entidades públicas y privadas; para desarrollar, investigar y aplicar nuestros conocimientos en las distintas actividades en México y el extranjero, en sistemas informáticos, aplicaciones web y la prestación de servicios relacionados.</p>
-                        <a href="nosotros.html#mission" class="mv-link">Conocer más <i class="fas fa-long-arrow-alt-right"></i></a>
+                        <a href="Nosotros" class="mv-link">Conocer más <i class="fas fa-long-arrow-alt-right"></i></a>
                     </div>
                 </div>
 
@@ -1753,66 +1754,7 @@
                     <div class="mv-content">
                         <h3 class="mv-title"><i class="fas fa-eye"></i> Visión</h3>
                         <p class="mv-text">Desarrollar con la más alta e innovadora tecnología, sistemas informáticos y aplicaciones web, para contribuir al desarrollo tecnológico en México y en el extranjero, facilitando a la población en general la vida, al sector privado y público la eficiencia en sus actividades para ser mejores entidades económicas y de servicios.</p>
-                        <a href="nosotros.html#vision" class="mv-link">Conocer más <i class="fas fa-long-arrow-alt-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Access Platforms Section -->
-    <section class="platforms" id="platforms">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in-up">Acceso a Plataformas</h2>
-                <p class="section-subtitle fade-in-up delay-200">Ingrese a nuestros sistemas según sus necesidades</p>
-            </div>
-
-            <div class="platforms-grid">
-                <!-- Platform 1 -->
-                <div class="platform-card fade-in-up delay-300">
-                    <div class="platform-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="platform-content">
-                        <h3 class="platform-title">Portal NOM-035</h3>
-                        <p class="platform-description">Acceda al sistema para administración y seguimiento de la norma NOM-035-STPS-2018 sobre factores de riesgo psicosocial.</p>
-                        <a href="Servicios" target="_blank" class="platform-btn">Acceder <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Platform 2 -->
-                <div class="platform-card fade-in-up delay-400">
-                    <div class="platform-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="platform-content">
-                        <h3 class="platform-title">Sistema Educativo</h3>
-                        <p class="platform-description">Ingrese al portal administrativo para gestión de instituciones educativas y control escolar integral.</p>
-                        <a href="https://sistema-educativo.grupocots.com" target="_blank" class="platform-btn">Acceder <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <!-- Platform 3 -->
-                <div class="platform-card fade-in-up delay-500">
-                    <div class="platform-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <div class="platform-content">
-                        <h3 class="platform-title">Portal Clínico</h3>
-                        <p class="platform-description">Acceda al sistema para la gestión de consultorios médicos, clínicas y servicios de salud.</p>
-                        <a href="Servicios" target="_blank" class="platform-btn">Acceder <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Platform 4 -->
-                <div class="platform-card fade-in-up delay-600">
-                    <div class="platform-icon">
-                        <i class="fas fa-user-lock"></i>
-                    </div>
-                    <div class="platform-content">
-                        <h3 class="platform-title">Área de Clientes</h3>
-                        <p class="platform-description">Portal para clientes donde podrá acceder a soporte técnico, actualizaciones y recursos adicionales.</p>
-                        <a href="https://clientes.grupocots.com" target="_blank" class="platform-btn">Acceder <i class="fas fa-arrow-right"></i></a>
+                        <a href="Nosotros" class="mv-link">Conocer más <i class="fas fa-long-arrow-alt-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1826,8 +1768,8 @@
                 <h2 class="cta-title">¿Listo para transformar su empresa?</h2>
                 <p class="cta-text">Descubra cómo nuestras soluciones tecnológicas pueden optimizar sus operaciones y potenciar su crecimiento.</p>
                 <div class="cta-buttons">
-                    <a href="servicios.html" class="cta-btn btn-white">Nuestros Servicios <i class="fas fa-arrow-right"></i></a>
-                    <a href="contacto.html" class="cta-btn btn-transparent">Contáctenos <i class="fas fa-headset"></i></a>
+                    <a href="Servicios" class="cta-btn btn-white">Nuestros Servicios <i class="fas fa-arrow-right"></i></a>
+                    <a href="Contactanos" class="cta-btn btn-transparent">Contáctenos <i class="fas fa-headset"></i></a>
                 </div>
             </div>
         </div>
@@ -1846,16 +1788,21 @@
                     <div class="footer-contact">
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <p>Ciudad de México, México</p>
+                            <p>Arizona,Pima</p>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <p>+52 55 1234 5678</p>
+                            <p>+1 928 750 4918</p>
                         </div>
-                        <div class="contact-item">
+                       <!-- <div class="contact-item">
                             <i class="fas fa-envelope"></i>
                             <p>contacto@grupocots.com</p>
-                        </div>
+                        </div>-->
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+   <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
+</div>
+
                     </div>
                 </div>
 
@@ -1866,17 +1813,17 @@
                         <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
                         <li><a href="Servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
                         <li><a href="estructura-organizacional"><i class="fas fa-chevron-right"></i> estructura-organizacional</a></li>
-                        <li><a href="Contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
-                        <li><a href="Politicas"><i class="fas fa-chevron-right"></i> Políticas</a></li>
+                        <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                        <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> Políticas</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-links">
                     <h4>Nuestros Servicios</h4>
                     <ul class="footer-nav">
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
+                        <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
+                        <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
+                        <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
 
                     </ul>
                 </div>
