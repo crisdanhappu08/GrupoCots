@@ -746,7 +746,7 @@
     <!-- Header -->
     <header class="header" id="header">
         <div class="container header-container">
-            <a href="index.html" class="logo">
+            <a href="home" class="logo">
                 <span class="logo-grupo">GRUPO</span>
                 <span class="logo-cots">COTS</span>
             </a>
