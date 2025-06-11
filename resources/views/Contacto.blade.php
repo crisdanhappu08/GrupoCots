@@ -797,7 +797,7 @@
                         </div>
                     </div>
 
-                    <div class="contact-item">
+                    <!--<div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-phone"></i>
                         </div>
@@ -805,17 +805,17 @@
                             <h3>Teléfono</h3>
                             <p>+1 928 750 4918</p>
                         </div>
-                    </div>
+                    </div>-->
 
-                   <!-- <div class="contact-item">
+                   <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-text">
                             <h3>Correo Electrónico</h3>
-                            <p><a href="mailto:your_email@example.com">your_email@example.com</a></p>
+                            <p> efigueroa@grupocots.com</p>
                         </div>
-                    </div>-->
+                    </div>
 
                     <div class="contact-item">
                         <div class="contact-icon">
@@ -850,20 +850,20 @@
                             <i class="fas fa-map-marker-alt"></i>
                             <p>Arizona, Pima</p>
                         </div>
-                        <div class="contact-item">
+                        <!--<div class="contact-item">
                             <i class="fas fa-phone"></i>
                             <p>+1 928 750 4918</p>
-                        </div>
-                       <!-- <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p><a href="mailto:your_email@example.com">your_email@example.com</a></p>
                         </div>-->
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p> efigueroa@grupocots.com</p>
+                        </div>
                                       <div class="contact-item">
                             <i class="fas fa-globe"></i>
    <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
 </div>
 
-                    </div>
+                </div>
                 </div>
                 <div class="footer-links">
                     <h4>Enlaces Rápidos</h4>
@@ -876,14 +876,12 @@
                         <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> Políticas</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-links">
                     <h4>Nuestros Servicios</h4>
                     <ul class="footer-nav">
                         <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
                         <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
                         <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
-
                     </ul>
                 </div>
             </div>

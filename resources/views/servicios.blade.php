@@ -790,119 +790,103 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
             transform: translateX(5px);
         }
 
+       a{text-decoration: none
+
+        }
         /* Footer */
-        footer {
-            background-color: var(--darker);
+        .footer {
+            background-color: var(--dark);
             color: var(--light);
-            position: relative;
             padding: 80px 0 20px;
         }
 
-        .footer-top {
+        .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1.5fr repeat(2, 1fr);
+            gap: 50px;
             margin-bottom: 50px;
         }
 
-        .footer-column h3 {
+        .footer-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
             color: var(--white);
-            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
             margin-bottom: 30px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-item i {
+            color: var(--primary-light);
+        }
+
+        .footer-links h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--white);
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
             display: inline-block;
         }
 
-        .footer-column h3::after {
+        .footer-links h4::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 40px;
             height: 3px;
-            background: var(--gradient);
+            width: 50px;
+            background: var(--primary);
         }
 
-        .footer-links {
-            list-style: none;
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
+        .footer-nav a {
             color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
+            gap: 8px;
         }
 
-        .footer-links a i {
-            margin-right: 10px;
-            font-size: 0.9rem;
-            color: var(--primary);
+        .footer-nav a i {
+            color: var(--primary-light);
+            font-size: 0.8rem;
         }
 
-        .footer-links a:hover {
-            color: var(--white);
+        .footer-nav a:hover {
+            color: var(--primary-light);
             transform: translateX(5px);
         }
 
-        .contact-info div {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .contact-info i {
-            margin-right: 15px;
-            color: var(--primary);
-            font-size: 18px;
-        }
-
-        .contact-info p {
-            margin: 0;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            font-size: 18px;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--gradient);
-            transform: translateY(-5px);
-        }
-
-        .footer-bottom {
+        .footer-copyright {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
 
-        .footer-bottom p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-            margin: 0;
-        }
 
         /* Responsive */
         @media (max-width: 1200px) {
@@ -1072,57 +1056,6 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
                 font-size: 2rem;
             }
         }
-
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--white);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .loader {
-            width: 80px;
-            height: 80px;
-            position: relative;
-        }
-
-        .loader:before, .loader:after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            animation: pulsOut 1.8s ease-in-out infinite;
-            filter: drop-shadow(0 0 1rem rgba(26, 158, 176, 0.75));
-        }
-
-        .loader:before {
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 158, 176, 0.6);
-            animation-delay: 0.35s;
-        }
-
-        .loader:after {
-            width: 70%;
-            height: 70%;
-            background: rgba(106, 125, 179, 0.6);
-            top: 15%;
-            left: 15%;
-            animation-delay: 0s;
-        }
-
-        @keyframes pulsOut {
-            0% { transform: scale(0.2); opacity: 0.8; }
-            50% { transform: scale(1); opacity: 0; }
-            100% { transform: scale(0.2); opacity: 0; }
-        }
-
         /* Additional Animations */
         @keyframes fadeInUp {
             from {
@@ -1241,11 +1174,6 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
         <div class="container">
             <div class="page-header-content" data-aos="fade-up">
                 <h1>Nuestros Servicios</h1>
-                <div class="breadcrumbs">
-                    <a href="index.html">Inicio</a>
-                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
-                    <span class="current">Servicios</span>
-                </div>
             </div>
         </div>
     </section>
@@ -1512,17 +1440,35 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+   <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <div class="footer-top">
-                <div class="footer-column">
-                    <a href="index.html" class="logo">
-                        <span class="logo-grupo">GRUPO</span>
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h3>
+                        <span class="logo-grupo" style="color: #fff;">GRUPO</span>
                         <span class="logo-cots">COTS</span>
-                    </a>
-                    <p style="margin-top: 20px;">Empresa líder en desarrollo de sistemas informáticos y aplicaciones web con la más alta e innovadora tecnología para contribuir al desarrollo tecnológico en México y en el extranjero.</p>
+                    </h3>
+                    <p class="footer-description">Empresa líder en desarrollo de sistemas informáticos y aplicaciones web con la más alta e innovadora tecnología para contribuir al desarrollo tecnológico en México y el extranjero.</p>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Arizona, Pima</p>
+                        </div>
+                      <!--  <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>+1 928 750 4918</p>
+                        </div>-->
+                       <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p> efigueroa@grupocots.com</p>
+                        </div>
+                                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+   <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
+</div>
 
+                    </div>
                 </div>
 
                  <div class="footer-links">
@@ -1537,39 +1483,17 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
                     </ul>
                 </div>
 
-                <div class="footer-links">
+             <div class="footer-links">
                     <h4>Nuestros Servicios</h4>
                     <ul class="footer-nav">
                         <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
                         <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
                         <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
-
                     </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contacto</h3>
-                    <div class="contact-info">
-                        <div>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Arizona, Pima</p>
-                        </div>
-                        <div>
-                            <i class="fas fa-phone"></i>
-                            <p>+1 928 750 4918</p>
-                        </div>
-                       <!-- <div>
-                            <i class="fas fa-envelope"></i>
-                            <p>contacto@grupocots.com</p>
-                        </div>-->
-                                          <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-   <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
-</div>
-                    </div>
                 </div>
             </div>
 
-            <div class="footer-bottom">
+            <div class="footer-copyright">
                 <p>&copy; 2025 Grupo COTS. Todos los derechos reservados.</p>
             </div>
         </div>

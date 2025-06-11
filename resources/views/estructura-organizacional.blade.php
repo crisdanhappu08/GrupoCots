@@ -1302,14 +1302,14 @@
                             <i class="fas fa-map-marker-alt"></i>
                             <p>Arizona, Pima</p>
                         </div>
-                        <div class="contact-item">
+                        <!--<div class="contact-item">
                             <i class="fas fa-phone"></i>
                             <p>+1 928 750 4918</p>
-                        </div>
-                       <!-- <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p>contacto@grupocots.com</p>
                         </div>-->
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p> efigueroa@grupocots.com</p>
+                        </div>
                         <div class="contact-item">
                             <i class="fas fa-globe"></i>
    <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
