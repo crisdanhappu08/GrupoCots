@@ -893,6 +893,111 @@
                 font-size: 1rem;
             }
         }
+  /* Language Dropdown -*/
+.language-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px; /* Espacio reducido alrededor del texto */
+    border-radius: 20px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.dropdown-toggle:hover {
+    background-color: var(--light); /* Color de fondo claro al pasar el mouse */
+    color: var(--primary);
+}
+
+.dropdown-toggle i {
+
+    font-size: 1.1em;
+
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 180px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Sombra suave y extendida */
+
+    padding: 8px 0; /* Padding solo vertical */
+    right: 0;   /* Alinea a la derecha */
+    z-index: 10; /* Para que se muestre encima de otros elementos. */
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;   /* Evita clics accidentales. */
+    transition: opacity 0.3s ease, transform 0.3s ease, pointer-events 0s ease; /* Transición suave */
+}
+.dropdown-menu.show {
+    opacity: 1;  /* Hace visible el menú */
+    transform: translateY(0);  /* Posición correcta */
+    pointer-events: auto;  /* Habilita la interactividad */
+    display: block;
+}
+
+.dropdown-menu a {
+    color: var(--text-dark);
+
+    padding: 10px 20px;
+
+
+    text-decoration: none;
+
+    display: flex;  /* Para alinear horizontalmente. */
+    align-items: center;
+    font-size: 1rem;
+    transition: var(--transition);
+
+    border-bottom: 1px solid #eee;
+    gap: 12px;
+}
+
+.dropdown-menu a:hover {
+    color: var(--primary);
+    background-color: #f7f7f7; /* Color de fondo al pasar el mouse */
+
+}
+.dropdown-menu a:last-of-type {
+    border-bottom: none;
+}
+.flag-icon {
+        width: 20px;
+        height: auto;
+        margin-right: 8px;
+       border-radius: 2px;
+
+    }
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        min-width: 150px;
+    }
+    /* Posicionamiento relativo para que el menú se ajuste al tamaño del contenedor. */
+    .language-dropdown {
+        position: static;
+        display: block;
+        margin: 0;
+    }
+     .dropdown-menu {
+         left: 0;  /* Alinea el menú desplegable con el borde izquierdo del boton. */
+    }
+}
 
     </style>
 </head>
@@ -906,297 +1011,323 @@
     <!-- Header -->
     <header class="header" id="header">
         <div class="container header-container">
-            <a href="home" class="logo">
-                <span class="logo-grupo">GRUPO</span>
-                <span class="logo-cots">COTS</span>
-            </a>
+   <div class="language-dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown()">
+        {{ __('messages.language') }} <i class="fas fa-globe"></i>
+    </button>
+    <div class="dropdown-menu" id="languageMenu">
+        <a href="{{ url('es/Politicas-de-seguridad') }}">{{ __('messages.spanish') }} <span class="flag-icon flag-icon-es"></span></a>
+        <a href="{{ url('en/Politicas-de-seguridad') }}">{{ __('messages.english') }} <span class="flag-icon flag-icon-us"></span></a> </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+<script>
+  function toggleDropdown() {
+    document.getElementById('languageMenu').classList.toggle('show');
+  }
 
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
-
-             <div class="nav-menu" id="navMenu">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="home" class="nav-link active">Inicio</a></li>
-                    <li class="nav-item"><a href="Nosotros" class="nav-link">Nosotros</a></li>
-                    <li class="nav-item"><a href="Servicios" class="nav-link">Servicios</a></li>
-                    <li class="nav-item"><a href="estructura-organizacional" class="nav-link">estructura-organizacional</a></li>
-                    <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link" class="active" >Políticas</a></li>
-                </ul>
-                <a href="Contactanos" class="header-btn">Contáctanos <i class="fas fa-arrow-right"></i></a>
-            </div>
+  window.addEventListener('click', function (e) {
+    const menu = document.getElementById('languageMenu');
+    const toggle = document.querySelector('.dropdown-toggle');
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.remove('show');
+    }
+  });
+</script>
+          <a href="Home" class="logo">
+        <span class="logo-grupo">GRUPO</span>
+         <span class="logo-cots">COTS</span>
+        </a>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
         </div>
-    </header>
 
-    <!-- Page Banner -->
-    <section class="page-banner">
-        <div class="page-banner-bg"></div>
-        <div class="page-banner-pattern"></div>
-        <div class="page-banner-content">
-            <div class="page-banner-icon fade-in-up">
-                <i class="fas fa-shield-alt"></i>
-            </div>
-            <h1 class="fade-in-up delay-200">Políticas de Seguridad</h1>
-            <p class="fade-in-up delay-300">Nuestro compromiso con la protección y confidencialidad de la información</p>
-        </div>
-    </section>
+        <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="Home" class="nav-link ">{{ __('messages.inicio') }}</a></li>
+                <li class="nav-item"><a href="Nosotros" class="nav-link">{{ __('messages.nosotros') }}</a></li>
+                <li class="nav-item"><a href="Servicios" class="nav-link">{{ __('messages.servicios') }}</a></li>
+                <li class="nav-item"><a href="Estructura-organizacional" class="nav-link">{{ __('messages.estructura') }}</a></li>
+                <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link active">{{ __('messages.politicas') }}</a></li>
+            </ul>
+            <a href="Contactanos" class="header-btn active">{{ __('messages.contactanos') }} <i class="fas fa-arrow-right"></i></a>
 
-    <!-- Intro Section -->
-    <section class="intro-section">
-        <div class="container">
-            <div class="intro-content">
-                <h2 class="intro-title fade-in-up">Nuestro Compromiso</h2>
-                <p class="intro-description fade-in-up delay-200">Grupo COTS se compromete a proteger la información, los datos personales y los sistemas tecnológicos involucrados en la operación de sus plataformas. Las siguientes políticas de seguridad reflejan este compromiso y nuestro esfuerzo por mantener los más altos estándares de protección y confidencialidad.</p>
-            </div>
         </div>
-    </section>
+    </div>
+</header>
+
+   <!-- Page Banner -->
+<section class="page-banner">
+    <div class="page-banner-bg"></div>
+    <div class="page-banner-pattern"></div>
+    <div class="page-banner-content">
+        <div class="page-banner-icon fade-in-up">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <h1 class="fade-in-up delay-200">{{ __('messages.policy_banner_title') }}</h1>
+        <p class="fade-in-up delay-300">{{ __('messages.policy_banner_description') }}</p>
+    </div>
+</section>
+
+<!-- Intro Section -->
+<section class="intro-section">
+    <div class="container">
+        <div class="intro-content">
+            <h2 class="intro-title fade-in-up">{{ __('messages.policy_intro_title') }}</h2>
+            <p class="intro-description fade-in-up delay-200">{{ __('messages.policy_intro_text') }}</p>
+        </div>
+    </div>
+</section>
+
 
     <!-- Policies Section -->
-    <section class="policies-section">
-        <div class="container policies-container">
-            <!-- Policy 1: Data Protection -->
-            <div class="policy-card fade-in-up">
-                <div class="policy-header">
-                    <div class="policy-icon">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3 class="policy-title">Protección de Datos Personales</h3>
-                </div>
-                <div class="policy-body">
-                    <div class="policy-points">
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>La empresa garantiza que los datos personales recopilados a través de sus plataformas serán tratados de manera confidencial y conforme a la legislación aplicable.</p>
-                            </div>
-                        </div>
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>Se limita el acceso a la información personal únicamente al personal autorizado y solo para fines estrictamente laborales o de atención a clientes.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <section class="policies-section">
+    <div class="container policies-container">
 
-            <!-- Policy 2: Confidentiality -->
-            <div class="policy-card fade-in-up delay-100">
-                <div class="policy-header">
-                    <div class="policy-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h3 class="policy-title">Confidencialidad</h3>
+        <!-- Policy 1: Data Protection -->
+        <div class="policy-card fade-in-up">
+            <div class="policy-header">
+                <div class="policy-icon">
+                    <i class="fas fa-user-shield"></i>
                 </div>
-                <div class="policy-body">
-                    <div class="policy-points">
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>Toda la información proporcionada por los usuarios, clientes o instituciones es considerada confidencial.</p>
-                            </div>
-                        </div>
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>El personal de Grupo COTS está obligado a firmar acuerdos de confidencialidad y a seguir protocolos estrictos para el manejo de la información.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h3 class="policy-title">{{ __('messages.policy1_title') }}</h3>
             </div>
-
-            <!-- Policy 3: Technology Security -->
-            <div class="policy-card fade-in-up delay-200">
-                <div class="policy-header">
-                    <div class="policy-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="policy-title">Seguridad Tecnológica</h3>
-                </div>
-                <div class="policy-body">
-                    <div class="policy-points">
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>Se utilizan herramientas actualizadas y protocolos de seguridad para proteger los sistemas contra accesos no autorizados, ataques cibernéticos y pérdida de información.</p>
-                            </div>
+            <div class="policy-body">
+                <div class="policy-points">
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
                         </div>
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>Las plataformas desarrolladas cuentan con controles de autenticación, cifrado y respaldo de datos.</p>
-                            </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy1_point1') }}</p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Policy 4: Access Control -->
-            <div class="policy-card fade-in-up delay-300">
-                <div class="policy-header">
-                    <div class="policy-icon">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <h3 class="policy-title">Control de Accesos</h3>
-                </div>
-                <div class="policy-body">
-                    <div class="policy-points">
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>El acceso a los sistemas y plataformas se otorga según el rol y perfil del usuario.</p>
-                            </div>
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
                         </div>
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>Los administradores y usuarios deben utilizar credenciales seguras, y el sistema requiere cambios periódicos de contraseñas.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Policy 5: Updates and Maintenance -->
-            <div class="policy-card fade-in-up delay-400">
-                <div class="policy-header">
-                    <div class="policy-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3 class="policy-title">Actualización y Mantenimiento</h3>
-                </div>
-                <div class="policy-body">
-                    <div class="policy-points">
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>Los sistemas informáticos y las aplicaciones web desarrolladas por Grupo COTS se actualizan periódicamente para mejorar su seguridad y funcionalidad.</p>
-                            </div>
-                        </div>
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>Se realizan auditorías internas de seguridad y revisiones técnicas frecuentes.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Policy 6: Platform Usage Responsibility -->
-            <div class="policy-card fade-in-up delay-500">
-                <div class="policy-header">
-                    <div class="policy-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3 class="policy-title">Responsabilidad en el Uso de la Plataforma</h3>
-                </div>
-                <div class="policy-body">
-                    <div class="policy-points">
-                        <div class="policy-point">
-                            <div class="policy-point-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="policy-point-text">
-                                <p>Los usuarios deben hacer un uso adecuado de los sistemas y plataformas, absteniéndose de realizar acciones que comprometan la seguridad o el correcto funcionamiento de los mismos.</p>
-                            </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy1_point2') }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Policy 2: Confidentiality -->
+        <div class="policy-card fade-in-up delay-100">
+            <div class="policy-header">
+                <div class="policy-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3 class="policy-title">{{ __('messages.policy2_title') }}</h3>
+            </div>
+            <div class="policy-body">
+                <div class="policy-points">
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy2_point1') }}</p>
+                        </div>
+                    </div>
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy2_point2') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Policy 3: Technology Security -->
+        <div class="policy-card fade-in-up delay-200">
+            <div class="policy-header">
+                <div class="policy-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3 class="policy-title">{{ __('messages.policy3_title') }}</h3>
+            </div>
+            <div class="policy-body">
+                <div class="policy-points">
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy3_point1') }}</p>
+                        </div>
+                    </div>
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy3_point2') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Policy 4: Access Control -->
+        <div class="policy-card fade-in-up delay-300">
+            <div class="policy-header">
+                <div class="policy-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h3 class="policy-title">{{ __('messages.policy4_title') }}</h3>
+            </div>
+            <div class="policy-body">
+                <div class="policy-points">
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy4_point1') }}</p>
+                        </div>
+                    </div>
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy4_point2') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Policy 5: Updates and Maintenance -->
+        <div class="policy-card fade-in-up delay-400">
+            <div class="policy-header">
+                <div class="policy-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3 class="policy-title">{{ __('messages.policy5_title') }}</h3>
+            </div>
+            <div class="policy-body">
+                <div class="policy-points">
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy5_point1') }}</p>
+                        </div>
+                    </div>
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy5_point2') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Policy 6: Platform Usage Responsibility -->
+        <div class="policy-card fade-in-up delay-500">
+            <div class="policy-header">
+                <div class="policy-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3 class="policy-title">{{ __('messages.policy6_title') }}</h3>
+            </div>
+            <div class="policy-body">
+                <div class="policy-points">
+                    <div class="policy-point">
+                        <div class="policy-point-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="policy-point-text">
+                            <p>{{ __('messages.policy6_point1') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
     <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content fade-in-up">
-                <h2 class="cta-title">¿Tiene preguntas sobre nuestras políticas?</h2>
-                <p class="cta-text">Estamos comprometidos con la transparencia. Contáctenos para obtener más información sobre nuestras políticas de seguridad.</p>
-                <a href="Contactanos" class="cta-btn">Contactar ahora <i class="fas fa-arrow-right"></i></a>
-            </div>
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content fade-in-up">
+            <h2 class="cta-title">{{ __('messages.cta_title') }}</h2>
+            <p class="cta-text">{{ __('messages.cta_text') }}</p>
+            <a href="{{ url('contactanos') }}" class="cta-btn">
+                {{ __('messages.cta_button') }} <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-info">
-                    <h3>
-                        <span class="logo-grupo" style="color: #fff;">GRUPO</span>
-                        <span class="logo-cots">COTS</span>
-                    </h3>
-                    <p class="footer-description">Empresa líder en desarrollo de sistemas informáticos y aplicaciones web con la más alta e innovadora tecnología para contribuir al desarrollo tecnológico en México y el extranjero.</p>
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Arizona, Pima</p>
-                        </div>
-                        <!--<div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <p>+1 928 750 4918</p>
-                        </div>-->
-                       <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p>efigueroa@grupocots.com</p>
-                        </div>
-                                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-   <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
-</div>
+<!--footer-->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>
+                    <span class="logo-grupo" style="color: #fff;">GRUPO</span>
+                    <span class="logo-cots">COTS</span>
+                </h3>
+                <p class="footer-description">{{ __('messages.footer_description') }}</p>
 
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>{{ __('messages.footer_location') }}</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>{{ __('messages.footer_email') }}</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
                     </div>
                 </div>
-
-                 <div class="footer-links">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul class="footer-nav">
-                        <li><a href="home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
-                        <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
-                        <li><a href="estructura-organizacional"><i class="fas fa-chevron-right"></i> estructura-organizacional</a></li>
-                        <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> Contacto</a></li>
-                        <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> Políticas</a></li>
-                    </ul>
-                </div>
-
-             <div class="footer-links">
-                    <h4>Nuestros Servicios</h4>
-                    <ul class="footer-nav">
-                        <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
-                        <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
-                        <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
-                    </ul>
-                </div>
             </div>
 
-            <div class="footer-copyright">
-                <p>&copy; 2025 Grupo COTS. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <h4>{{ __('messages.quick_links') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Home"><i class="fas fa-chevron-right"></i> {{ __('messages.link_home') }}</a></li>
+                    <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> {{ __('messages.link_about') }}</a></li>
+                    <li><a href="Servicios"><i class="fas fa-chevron-right"></i> {{ __('messages.link_services') }}</a></li>
+                    <li><a href="Estructura-organizacional"><i class="fas fa-chevron-right"></i> {{ __('messages.link_structure') }}</a></li>
+                    <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> {{ __('messages.link_contact') }}</a></li>
+                    <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> {{ __('messages.link_policies') }}</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>{{ __('messages.our_services') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> {{ __('messages.service_nom') }}</a></li>
+                    <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> {{ __('messages.service_edu') }}</a></li>
+                    <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> {{ __('messages.service_clinic') }}</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+
+        <div class="footer-copyright">
+            <p>&copy; 2025 Grupo COTS. {{ __('messages.rights_reserved') }}</p>
+        </div>
+    </div>
+</footer>
+
 
     <!-- JavaScript -->
     <script>

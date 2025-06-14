@@ -2,29 +2,34 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/home', function () {
-    return view('home');
+
+Route::get('{lang}/Home', function ($lang) {
+    App::setLocale($lang);
+    return view('Home');
 });
 
-Route::get('/Nosotros', function () {
+Route::get('{lang}/Nosotros', function ($lang) {
+    App::setLocale($lang);
     return view('Nosotros');
 });
-
-Route::get('/estructura-organizacional', function () {
+Route::get('{lang}/Estructura-organizacional', function ($lang) {
+    App::setLocale($lang);
     return view('estructura-organizacional');
 });
 
-Route::get('/Servicios', function () {
+Route::get('{lang}/Servicios', function ($lang) {
+    App::setLocale($lang);
     return view('Servicios');
 });
-Route::get('/Politicas-de-seguridad', function () {
-    return view('politicas');
+
+Route::get('{lang}/Politicas-de-seguridad', function ($lang) {
+    App::setLocale($lang);
+    return view('Politicas');
 });
-Route::get('/Contactanos', function () {
+
+Route::get('{lang}/Contactanos', function ($lang) {
+    App::setLocale($lang);
     return view('contacto');
 });
-
-
-
 
 

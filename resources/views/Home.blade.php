@@ -1502,6 +1502,111 @@
                 bottom: 100px;
             }
         }
+ /* Language Dropdown -*/
+.language-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px; /* Espacio reducido alrededor del texto */
+    border-radius: 20px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.dropdown-toggle:hover {
+    background-color: var(--light); /* Color de fondo claro al pasar el mouse */
+    color: var(--primary);
+}
+
+.dropdown-toggle i {
+
+    font-size: 1.1em;
+
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 180px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Sombra suave y extendida */
+
+    padding: 8px 0; /* Padding solo vertical */
+    right: 0;   /* Alinea a la derecha */
+    z-index: 10; /* Para que se muestre encima de otros elementos. */
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;   /* Evita clics accidentales. */
+    transition: opacity 0.3s ease, transform 0.3s ease, pointer-events 0s ease; /* Transición suave */
+}
+.dropdown-menu.show {
+    opacity: 1;  /* Hace visible el menú */
+    transform: translateY(0);  /* Posición correcta */
+    pointer-events: auto;  /* Habilita la interactividad */
+    display: block;
+}
+
+.dropdown-menu a {
+    color: var(--text-dark);
+
+    padding: 10px 20px;
+
+
+    text-decoration: none;
+
+    display: flex;  /* Para alinear horizontalmente. */
+    align-items: center;
+    font-size: 1rem;
+    transition: var(--transition);
+
+    border-bottom: 1px solid #eee;
+    gap: 12px;
+}
+
+.dropdown-menu a:hover {
+    color: var(--primary);
+    background-color: #f7f7f7; /* Color de fondo al pasar el mouse */
+
+}
+.dropdown-menu a:last-of-type {
+    border-bottom: none;
+}
+.flag-icon {
+        width: 20px;
+        height: auto;
+        margin-right: 8px;
+       border-radius: 2px;
+
+    }
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        min-width: 150px;
+    }
+    /* Posicionamiento relativo para que el menú se ajuste al tamaño del contenedor. */
+    .language-dropdown {
+        position: static;
+        display: block;
+        margin: 0;
+    }
+     .dropdown-menu {
+         left: 0;  /* Alinea el menú desplegable con el borde izquierdo del boton. */
+    }
+}
     </style>
 </head>
 <style>
@@ -1515,7 +1620,30 @@
     <!-- Header -->
     <header class="header" id="header">
         <div class="container header-container">
-            <a href="home" class="logo">
+  <div class="language-dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown()">
+        {{ __('messages.language') }} <i class="fas fa-globe"></i>
+    </button>
+    <div class="dropdown-menu" id="languageMenu">
+        <a href="{{ url('es/Home') }}">{{ __('messages.spanish') }} <span class="flag-icon flag-icon-es"></span></a>
+        <a href="{{ url('en/Home') }}">{{ __('messages.english') }} <span class="flag-icon flag-icon-us"></span></a> </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+<script>
+  function toggleDropdown() {
+    document.getElementById('languageMenu').classList.toggle('show');
+  }
+
+  window.addEventListener('click', function (e) {
+    const menu = document.getElementById('languageMenu');
+    const toggle = document.querySelector('.dropdown-toggle');
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.remove('show');
+    }
+  });
+</script>
+            <a href="Home" class="logo">
                 <span class="logo-grupo">GRUPO</span>
                 <span class="logo-cots">COTS</span>
             </a>
@@ -1525,315 +1653,316 @@
             </div>
 
             <div class="nav-menu" id="navMenu">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="home" class="nav-link active">Inicio</a></li>
-                    <li class="nav-item"><a href="Nosotros" class="nav-link">Nosotros</a></li>
-                    <li class="nav-item"><a href="Servicios" class="nav-link">Servicios</a></li>
-                    <li class="nav-item"><a href="estructura-organizacional" class="nav-link">estructura-organizacional</a></li>
-                    <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link">Políticas</a></li>
-                </ul>
-                <a href="Contactanos" class="header-btn">Contáctanos <i class="fas fa-arrow-right"></i></a>
-            </div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="Home" class="nav-link active">{{ __('messages.inicio') }}</a></li>
+                <li class="nav-item"><a href="Nosotros" class="nav-link">{{ __('messages.nosotros') }}</a></li>
+                <li class="nav-item"><a href="Servicios" class="nav-link">{{ __('messages.servicios') }}</a></li>
+                <li class="nav-item"><a href="Estructura-organizacional" class="nav-link">{{ __('messages.estructura') }}</a></li>
+                <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link">{{ __('messages.politicas') }}</a></li>
+            </ul>
+            <a href="Contactanos" class="header-btn active">{{ __('messages.contactanos') }} <i class="fas fa-arrow-right"></i></a>
+
+        </div>
         </div>
     </header>
 
 
-    <section class="hero" id="hero">
-        <div class="hero-slider" id="heroSlider">
-            <!-- Slide 1 -->
-            <div class="hero-slide active">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80" alt="Innovación Tecnológica" class="hero-image">
-                <div class="hero-overlay"></div>
-                <div class="hero-pattern"></div>
-                <div class="container hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">Transformamos el futuro<br>con tecnología</h1>
-                        <p style="color: #f8f9faa2" class="hero-subtitle">Desarrollamos sistemas y aplicaciones web con la más alta tecnología para impulsar la eficiencia de su empresa.</p>
-                        <div class="hero-btn-group">
-                            <a href="Servicios" class="hero-btn btn-primary"><i class="fas fa-laptop-code"></i> Nuestros Servicios</a>
-                            <a href="Contactanos" class="hero-btn btn-outline"><i class="fas fa-headset"></i> Solicitar Información</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="hero-slide">
-                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80" alt="Soluciones Personalizadas" class="hero-image">
-                <div class="hero-overlay"></div>
-                <div class="hero-pattern"></div>
-                <div class="container hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">Soluciones tecnológicas<br>a su medida</h1>
-                        <p style="color: #f8f9faa2" class="hero-subtitle">Creamos sistemas personalizados que se adaptan perfectamente a las necesidades específicas de su negocio.</p>
-                        <div class="hero-btn-group">
-                            <a href="Nosotros" class="hero-btn btn-primary"><i class="fas fa-users"></i> Conózcanos</a>
-                            <a href="Contactanos" class="hero-btn btn-outline"><i class="fas fa-paper-plane"></i> Contáctenos</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide">
-                <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80" alt="Equipo Profesional" class="hero-image">
-                <div class="hero-overlay"></div>
-                <div class="hero-pattern"></div>
-                <div class="container hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">Innovando desde 2016<br>para su crecimiento</h1>
-                        <p style="color: #f8f9faa2" class="hero-subtitle">Contribuimos al desarrollo tecnológico con soluciones innovadoras que potencian el crecimiento empresarial.</p>
-                        <div class="hero-btn-group">
-                            <a href="Servicios#cots-nom" class="hero-btn btn-primary"><i class="fas fa-shield-alt"></i> COTS NOM-035</a>
-                            <a href="Servicios#cots-clinico" class="hero-btn btn-outline"><i class="fas fa-heartbeat"></i> COTS Clínico</a>
-                        </div>
+   <section class="hero" id="hero">
+    <div class="hero-slider" id="heroSlider">
+        <!-- Slide 1 -->
+        <div class="hero-slide active">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80" alt="Innovación Tecnológica" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="hero-pattern"></div>
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">{{ __('messages.hero_title_1') }}</h1>
+                    <p style="color: #f8f9faa2" class="hero-subtitle">{{ __('messages.hero_subtitle_1') }}</p>
+                    <div class="hero-btn-group">
+                        <a href="Servicios" class="hero-btn btn-primary"><i class="fas fa-laptop-code"></i> {{ __('messages.hero_btn_1_primary') }}</a>
+                        <a href="Contactanos" class="hero-btn btn-outline"><i class="fas fa-headset"></i> {{ __('messages.hero_btn_1_secondary') }}</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slider Progress Bar -->
-        <div class="slider-progress-container">
-            <div class="slider-progress" id="sliderProgress"></div>
-        </div>
-
-        <!-- Advanced Slider Controls -->
-        <div class="slider-controls">
-            <div class="slider-arrow" id="sliderPrev">
-                <i class="fas fa-arrow-left"></i>
-            </div>
-            <div class="slider-dots" id="sliderDots">
-                <span class="slider-dot active" data-slide="0"></span>
-                <span class="slider-dot" data-slide="1"></span>
-                <span class="slider-dot" data-slide="2"></span>
-            </div>
-            <div class="slider-arrow" id="sliderNext">
-                <i class="fas fa-arrow-right"></i>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in-up">Grupo COTS</h2>
-                <p class="section-subtitle fade-in-up delay-200">Innovación tecnológica al servicio de empresas y organizaciones</p>
-            </div>
-
-            <div class="about-grid">
-                <div class="about-text fade-in-left">
-                    <h3>Desarrollamos soluciones tecnológicas innovadoras desde 2016</h3>
-                    <p>Somos una empresa que inició en el año 2016, con planeación de sistemas en materia informática y de servicios profesionales para mejorar, eficientizar y conocer estadísticamente la información en sector público y sector privado en un área específica, que pueda coadyubar en tomas de decisiones a los involucrados.</p>
-                    <p>En Grupo COTS nos dedicamos a crear tecnología de vanguardia que transforma operaciones y mejora la productividad. Nuestros sistemas están diseñados para facilitar la vida de usuarios y ayudar a organizaciones a convertirse en mejores entidades económicas y de servicios.</p>
-
-                    <div class="about-features">
-                        <div class="feature-item fade-in-up delay-300">
-                            <div class="feature-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Innovación</h4>
-                                <p>Tecnología de vanguardia para soluciones efectivas</p>
-                            </div>
-                        </div>
-
-                        <div class="feature-item fade-in-up delay-400">
-                            <div class="feature-icon">
-                                <i class="fas fa-cogs"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Eficiencia</h4>
-                                <p>Optimización de procesos y recursos</p>
-                            </div>
-                        </div>
-
-                        <div class="feature-item fade-in-up delay-500">
-                            <div class="feature-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Resultados</h4>
-                                <p>Soluciones orientadas a objetivos</p>
-                            </div>
-                        </div>
-
-                        <div class="feature-item fade-in-up delay-600">
-                            <div class="feature-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Compromiso</h4>
-                                <p>Aliados en su crecimiento digital</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="about-image float-y fade-in-right">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Equipo Grupo COTS" class="about-img">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in-up">Nuestros Servicios</h2>
-                <p class="section-subtitle fade-in-up delay-200">Soluciones tecnológicas para impulsar su empresa</p>
-            </div>
-
-            <div class="services-grid">
-                <!-- Service Card 1 -->
-                <div class="service-card scale-up delay-300">
-                    <div class="service-header">
-                        <div class="service-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="service-title">COTS NOM-035</h3>
-                    </div>
-                    <div class="service-body">
-                        <p class="service-text">Aplicación web con portal para empresas y empleados que facilita el cumplimiento de la Norma 035-STPS-2018, relacionada con los factores de riesgo psicosocial.</p>
-                        <a href="Servicios#cots-nom" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Service Card 2 -->
-                <div class="service-card scale-up delay-400">
-                    <div class="service-header">
-                        <div class="service-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="service-title">COTS Administrativo Educativo</h3>
-                    </div>
-                    <div class="service-body">
-                        <p class="service-text">Sistema de control administrativo integral para instituciones educativas de todos los niveles, optimizando gestión de alumnos, profesores y recursos.</p>
-                        <a href="Servicios#cots-educativo" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Service Card 3 -->
-                <div class="service-card scale-up delay-500">
-                    <div class="service-header">
-                        <div class="service-icon">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <h3 class="service-title">COTS Clínico</h3>
-                    </div>
-                    <div class="service-body">
-                        <p class="service-text">Software para una mejor experiencia de pacientes y proveedores de salud, con gestión eficiente de citas, historiales médicos y seguimiento de tratamientos.</p>
-                        <a href="Servicios#cots-clinico" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+        <!-- Slide 2 -->
+        <div class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80" alt="Soluciones Personalizadas" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="hero-pattern"></div>
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">{{ __('messages.hero_title_2') }}</h1>
+                    <p style="color: #f8f9faa2" class="hero-subtitle">{{ __('messages.hero_subtitle_2') }}</p>
+                    <div class="hero-btn-group">
+                        <a href="Nosotros" class="hero-btn btn-primary"><i class="fas fa-users"></i> {{ __('messages.hero_btn_2_primary') }}</a>
+                        <a href="Contactanos" class="hero-btn btn-outline"><i class="fas fa-paper-plane"></i> {{ __('messages.hero_btn_2_secondary') }}</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Mission & Vision Section -->
-    <section class="mission-vision" id="mission-vision">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in-up">Nuestra Filosofía</h2>
-                <p class="section-subtitle fade-in-up delay-200">Conoce los principios que guían nuestro trabajo diario</p>
-            </div>
-
-            <div class="mission-vision-grid">
-                <!-- Mission -->
-                <div class="mv-card mission-card fade-in-left">
-                    <div class="mv-content">
-                        <h3 class="mv-title"><i class="fas fa-bullseye"></i> Misión</h3>
-                        <p class="mv-text">Ser la mejor empresa en desarrollo y soporte tecnológico para la población en general, así como para las entidades públicas y privadas; para desarrollar, investigar y aplicar nuestros conocimientos en las distintas actividades en México y el extranjero, en sistemas informáticos, aplicaciones web y la prestación de servicios relacionados.</p>
-                        <a href="Nosotros" class="mv-link">Conocer más <i class="fas fa-long-arrow-alt-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Vision -->
-                <div class="mv-card vision-card fade-in-right">
-                    <div class="mv-content">
-                        <h3 class="mv-title"><i class="fas fa-eye"></i> Visión</h3>
-                        <p class="mv-text">Desarrollar con la más alta e innovadora tecnología, sistemas informáticos y aplicaciones web, para contribuir al desarrollo tecnológico en México y en el extranjero, facilitando a la población en general la vida, al sector privado y público la eficiencia en sus actividades para ser mejores entidades económicas y de servicios.</p>
-                        <a href="Nosotros" class="mv-link">Conocer más <i class="fas fa-long-arrow-alt-right"></i></a>
+        <!-- Slide 3 -->
+        <div class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80" alt="Equipo Profesional" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="hero-pattern"></div>
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">{{ __('messages.hero_title_3') }}</h1>
+                    <p style="color: #f8f9faa2" class="hero-subtitle">{{ __('messages.hero_subtitle_3') }}</p>
+                    <div class="hero-btn-group">
+                        <a href="Servicios#cots-nom" class="hero-btn btn-primary"><i class="fas fa-shield-alt"></i> {{ __('messages.hero_btn_3_primary') }}</a>
+                        <a href="Servicios#cots-clinico" class="hero-btn btn-outline"><i class="fas fa-heartbeat"></i> {{ __('messages.hero_btn_3_secondary') }}</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content fade-in-up">
-                <h2 class="cta-title">¿Listo para transformar su empresa?</h2>
-                <p class="cta-text">Descubra cómo nuestras soluciones tecnológicas pueden optimizar sus operaciones y potenciar su crecimiento.</p>
-                <div class="cta-buttons">
-                    <a href="Servicios" class="cta-btn btn-white">Nuestros Servicios <i class="fas fa-arrow-right"></i></a>
-                    <a href="Contactanos" class="cta-btn btn-transparent">Contáctenos <i class="fas fa-headset"></i></a>
-                </div>
-            </div>
+    <!-- Slider Progress Bar -->
+    <div class="slider-progress-container">
+        <div class="slider-progress" id="sliderProgress"></div>
+    </div>
+
+    <!-- Slider Controls -->
+    <div class="slider-controls">
+        <div class="slider-arrow" id="sliderPrev">
+            <i class="fas fa-arrow-left"></i>
         </div>
-    </section>
+        <div class="slider-dots" id="sliderDots">
+            <span class="slider-dot active" data-slide="0"></span>
+            <span class="slider-dot" data-slide="1"></span>
+            <span class="slider-dot" data-slide="2"></span>
+        </div>
+        <div class="slider-arrow" id="sliderNext">
+            <i class="fas fa-arrow-right"></i>
+        </div>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-info">
-                    <h3>
-                        <span class="logo-grupo" style="color: #fff;">GRUPO</span>
-                        <span class="logo-cots">COTS</span>
-                    </h3>
-                    <p class="footer-description">Empresa líder en desarrollo de sistemas informáticos y aplicaciones web con la más alta e innovadora tecnología para contribuir al desarrollo tecnológico en México y el extranjero.</p>
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Arizona,Pima</p>
+
+  <!-- About Section -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title fade-in-up">{{ __('messages.about2_title') }}</h2> {{-- Grupo COTS --}}
+            <p class="section-subtitle fade-in-up delay-200">{{ __('messages.about2_subtitle') }}</p> {{-- Innovación tecnológica... --}}
+        </div>
+
+        <div class="about-grid">
+            <div class="about-text fade-in-left">
+                <h3>{{ __('messages.about2_heading') }}</h3> {{-- Desarrollamos soluciones... --}}
+                <p>{{ __('messages.about2_paragraph_1') }}</p>
+                <p>{{ __('messages.about2_paragraph_2') }}</p>
+
+                <div class="about-features">
+                    <div class="feature-item fade-in-up delay-300">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
                         </div>
-                       <!-- <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <p>+1 928 750 4918</p>
-                        </div>-->
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p> efigueroa@grupocots.com</p>
+                        <div class="feature-text">
+                            <h4>{{ __('messages.feature_1_title') }}</h4>
+                            <p>{{ __('messages.feature_1_desc') }}</p>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-   <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
-</div>
+                    </div>
 
+                    <div class="feature-item fade-in-up delay-400">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>{{ __('messages.feature_2_title') }}</h4>
+                            <p>{{ __('messages.feature_2_desc') }}</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item fade-in-up delay-500">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>{{ __('messages.feature_3_title') }}</h4>
+                            <p>{{ __('messages.feature_3_desc') }}</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item fade-in-up delay-600">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>{{ __('messages.feature_4_title') }}</h4>
+                            <p>{{ __('messages.feature_4_desc') }}</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="footer-links">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul class="footer-nav">
-                        <li><a href="home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
-                        <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
-                        <li><a href="estructura-organizacional"><i class="fas fa-chevron-right"></i> estructura-organizacional</a></li>
-                        <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> Contacto</a></li>
-                        <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> Políticas</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-links">
-                    <h4>Nuestros Servicios</h4>
-                    <ul class="footer-nav">
-                        <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
-                        <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
-                        <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
-
-                    </ul>
-                </div>
             </div>
 
-            <div class="footer-copyright">
-                <p>&copy; 2025 Grupo COTS. Todos los derechos reservados.</p>
+            <div class="about-image float-y fade-in-right">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Equipo Grupo COTS" class="about-img">
             </div>
         </div>
-    </footer>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title fade-in-up">{{ __('messages.services_title') }}</h2> {{-- Nuestros Servicios --}}
+            <p class="section-subtitle fade-in-up delay-200">{{ __('messages.services_subtitle') }}</p> {{-- Soluciones tecnológicas... --}}
+        </div>
+
+        <div class="services-grid">
+            <!-- Service Card 1 -->
+            <div class="service-card scale-up delay-300">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="service-title">{{ __('messages.service1_title') }}</h3> {{-- COTS NOM-035 --}}
+                </div>
+                <div class="service-body">
+                    <p class="service-text">{{ __('messages.service1_text') }}</p>
+                    <a href="Servicios#cots-nom" class="service-link">{{ __('messages.more_info') }} <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="service-card scale-up delay-400">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="service-title">{{ __('messages.service2_title') }}</h3> {{-- COTS Administrativo Educativo --}}
+                </div>
+                <div class="service-body">
+                    <p class="service-text">{{ __('messages.service2_text') }}</p>
+                    <a href="Servicios#cots-educativo" class="service-link">{{ __('messages.more_info') }} <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="service-card scale-up delay-500">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="service-title">{{ __('messages.service3_title') }}</h3> {{-- COTS Clínico --}}
+                </div>
+                <div class="service-body">
+                    <p class="service-text">{{ __('messages.service3_text') }}</p>
+                    <a href="Servicios#cots-clinico" class="service-link">{{ __('messages.more_info') }} <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+ <!-- Mission & Vision Section -->
+<section class="mission-vision" id="mission-vision">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title fade-in-up">{{ __('messages.home_philosophy_title') }}</h2>
+            <p class="section-subtitle fade-in-up delay-200">{{ __('messages.home_philosophy_subtitle') }}</p>
+        </div>
+
+        <div class="mission-vision-grid">
+            <!-- Mission -->
+            <div class="mv-card mission-card fade-in-left">
+                <div class="mv-content">
+                    <h3 class="mv-title"><i class="fas fa-bullseye"></i> {{ __('messages.home_philosophy_mission_title') }}</h3>
+                    <p class="mv-text">{{ __('messages.home_philosophy_mission_text') }}</p>
+                    <a href="Nosotros" class="mv-link">{{ __('messages.home_philosophy_link_text') }} <i class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Vision -->
+            <div class="mv-card vision-card fade-in-right">
+                <div class="mv-content">
+                    <h3 class="mv-title"><i class="fas fa-eye"></i> {{ __('messages.home_philosophy_vision_title') }}</h3>
+                    <p class="mv-text">{{ __('messages.home_philosophy_vision_text') }}</p>
+                    <a href="Nosotros" class="mv-link">{{ __('messages.home_philosophy_link_text') }} <i class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+ <!-- CTA Section -->
+<section class="cta">
+    <div class="container">
+        <div class="cta-content fade-in-up">
+            <h2 class="cta-title">{{ __('messages.home_cta_title') }}</h2>
+            <p class="cta-text">{{ __('messages.home_cta_text') }}</p>
+            <div class="cta-buttons">
+                <a href="Servicios" class="cta-btn btn-white">{{ __('messages.home_cta_btn_services') }} <i class="fas fa-arrow-right"></i></a>
+                <a href="Contactanos" class="cta-btn btn-transparent">{{ __('messages.home_cta_btn_contact') }} <i class="fas fa-headset"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+   <!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>
+                    <span class="logo-grupo" style="color: #fff;">GRUPO</span>
+                    <span class="logo-cots">COTS</span>
+                </h3>
+                <p class="footer-description">{{ __('messages.footer_description') }}</p>
+
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>{{ __('messages.footer_location') }}</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>{{ __('messages.footer_email') }}</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>{{ __('messages.quick_links') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Home"><i class="fas fa-chevron-right"></i> {{ __('messages.link_home') }}</a></li>
+                    <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> {{ __('messages.link_about') }}</a></li>
+                    <li><a href="Servicios"><i class="fas fa-chevron-right"></i> {{ __('messages.link_services') }}</a></li>
+                    <li><a href="Estructura-organizacional"><i class="fas fa-chevron-right"></i> {{ __('messages.link_structure') }}</a></li>
+                    <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> {{ __('messages.link_contact') }}</a></li>
+                    <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> {{ __('messages.link_policies') }}</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>{{ __('messages.our_services') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> {{ __('messages.service_nom') }}</a></li>
+                    <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> {{ __('messages.service_edu') }}</a></li>
+                    <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> {{ __('messages.service_clinic') }}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <p>&copy; 2025 Grupo COTS. {{ __('messages.rights_reserved') }}</p>
+        </div>
+    </div>
+</footer>
 
     <!-- JavaScript -->
     <script>

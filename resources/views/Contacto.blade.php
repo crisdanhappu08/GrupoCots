@@ -733,164 +733,294 @@
                 font-size: 0.9rem;
             }
         }
-    </style>
-</head>
-<style>
-  .contact-item a {
-    color: blue;
-    text-decoration: underline;
-  }
+
+   /* Language Dropdown -*/
+.language-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px; /* Espacio reducido alrededor del texto */
+    border-radius: 20px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.dropdown-toggle:hover {
+    background-color: var(--light); /* Color de fondo claro al pasar el mouse */
+    color: var(--primary);
+}
+
+.dropdown-toggle i {
+
+    font-size: 1.1em;
+
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 180px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Sombra suave y extendida */
+
+    padding: 8px 0; /* Padding solo vertical */
+    right: 0;   /* Alinea a la derecha */
+    z-index: 10; /* Para que se muestre encima de otros elementos. */
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;   /* Evita clics accidentales. */
+    transition: opacity 0.3s ease, transform 0.3s ease, pointer-events 0s ease; /* Transición suave */
+}
+.dropdown-menu.show {
+    opacity: 1;  /* Hace visible el menú */
+    transform: translateY(0);  /* Posición correcta */
+    pointer-events: auto;  /* Habilita la interactividad */
+    display: block;
+}
+
+.dropdown-menu a {
+    color: var(--text-dark);
+
+    padding: 10px 20px;
+
+
+    text-decoration: none;
+
+    display: flex;  /* Para alinear horizontalmente. */
+    align-items: center;
+    font-size: 1rem;
+    transition: var(--transition);
+
+    border-bottom: 1px solid #eee;
+    gap: 12px;
+}
+
+.dropdown-menu a:hover {
+    color: var(--primary);
+    background-color: #f7f7f7; /* Color de fondo al pasar el mouse */
+
+}
+.dropdown-menu a:last-of-type {
+    border-bottom: none;
+}
+.flag-icon {
+        width: 20px;
+        height: auto;
+        margin-right: 8px;
+       border-radius: 2px;
+
+    }
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        min-width: 150px;
+    }
+    /* Posicionamiento relativo para que el menú se ajuste al tamaño del contenedor. */
+    .language-dropdown {
+        position: static;
+        display: block;
+        margin: 0;
+    }
+     .dropdown-menu {
+         left: 0;  /* Alinea el menú desplegable con el borde izquierdo del boton. */
+    }
+}
 </style>
 
 <body>
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="container header-container">
-            <a href="home" class="logo">
-                <span class="logo-grupo">GRUPO</span>
-                <span class="logo-cots">COTS</span>
-            </a>
+  <!-- Header -->
 
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
+<header class="header" id="header">
+    <div class="container header-container">
+<div class="language-dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown()">
+        {{ __('messages.language') }} <i class="fas fa-globe"></i>
+    </button>
+    <div class="dropdown-menu" id="languageMenu">
+        <a href="{{ url('es/Contactanos') }}">{{ __('messages.spanish') }} <span class="flag-icon flag-icon-es"></span></a>
+        <a href="{{ url('en/Contactanos') }}">{{ __('messages.english') }} <span class="flag-icon flag-icon-us"></span></a> </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+<script>
+    // ... (El mismo JavaScript que antes) ...
+</script>
 
-             <div class="nav-menu" id="navMenu">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="home" class="nav-link active">Inicio</a></li>
-                    <li class="nav-item"><a href="Nosotros" class="nav-link">Nosotros</a></li>
-                    <li class="nav-item"><a href="Servicios" class="nav-link">Servicios</a></li>
-                    <li class="nav-item"><a href="estructura-organizacional" class="nav-link">estructura-organizacional</a></li>
-                    <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link">Políticas</a></li>
-                </ul>
-                <a href="Contactanos" class="header-btn" class="active">Contáctanos <i class="fas fa-arrow-right"></i></a>
-            </div>
+<script>
+  function toggleDropdown() {
+    document.getElementById('languageMenu').classList.toggle('show');
+  }
+
+  window.addEventListener('click', function (e) {
+    const menu = document.getElementById('languageMenu');
+    const toggle = document.querySelector('.dropdown-toggle');
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.remove('show');
+    }
+  });
+</script>
+        <a href="Home" class="logo">
+            <span class="logo-grupo">GRUPO</span>
+            <span class="logo-cots">COTS</span>
+        </a>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
         </div>
-    </header>
-
-    <!-- Page Banner -->
-    <section class="page-banner">
-        <div class="page-banner-bg"></div>
-        <div class="page-banner-pattern"></div>
-        <div class="container page-banner-content">
-            <div class="page-banner-icon">
-                <i class="fas fa-headset"></i>
-            </div>
-            <h1>Contáctenos</h1>
-            <p>Estamos aquí para ayudarle. No dude en contactarnos para cualquier consulta, solicitud de información o para programar una demostración de nuestros servicios.</p>
+        <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="Home" class="nav-link active">{{ __('messages.inicio') }}</a></li>
+                <li class="nav-item"><a href="Nosotros" class="nav-link">{{ __('messages.nosotros') }}</a></li>
+                <li class="nav-item"><a href="Servicios" class="nav-link">{{ __('messages.servicios') }}</a></li>
+                <li class="nav-item"><a href="Estructura-organizacional" class="nav-link">{{ __('messages.estructura') }}</a></li>
+                <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link">{{ __('messages.politicas') }}</a></li>
+            </ul>
+            <a href="Contactanos" class="header-btn active">{{ __('messages.contactanos') }} <i class="fas fa-arrow-right"></i></a>
         </div>
-    </section>
+    </div>
+</header>
 
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info fade-in-up">
-                    <h2>Información de Contacto</h2>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Ubicación</h3>
-                            <p>Arizona, Pima</p>
-                        </div>
+<!-- Page Banner -->
+<section class="page-banner">
+    <div class="page-banner-bg"></div>
+    <div class="page-banner-pattern"></div>
+    <div class="container page-banner-content">
+        <div class="page-banner-icon">
+            <i class="fas fa-headset"></i>
+        </div>
+        <h1>{{ __('messages.contacto_titulo') }}</h1>
+        <p>{{ __('messages.contacto_texto') }}</p>
+    </div>
+</section>
+
+
+<!-- Contact Section -->
+
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info fade-in-up">
+                <h2>{{ __('messages.contact_section_title') }}</h2>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
-
-                    <!--<div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Teléfono</h3>
-                            <p>+1 928 750 4918</p>
-                        </div>
-                    </div>-->
-
-                   <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Correo Electrónico</h3>
-                            <p> efigueroa@grupocots.com</p>
-                        </div>
+                    <div class="contact-text">
+                        <h3>{{ __('messages.location_title') }}</h3>
+                        <p>{{ __('messages.location_text') }}</p>
                     </div>
+                </div>
 
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Sitio Web</h3>
-                            <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
-                        </div>
+                {{-- Teléfono desactivado por ahora --}}
+                {{--
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Teléfono</h3>
+                        <p>+1 928 750 4918</p>
+                    </div>
+                </div>
+                --}}
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>{{ __('messages.email_title') }}</h3>
+                        <p>{{ __('messages.email_text') }}</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>{{ __('messages.website_title') }}</h3>
+                        <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">{{ __('messages.website_text') }}</a></p>
                     </div>
                 </div>
             </div>
-
+        </div>
+    </div>
+</section>
         </div>
     </section>
     <div class="map-container">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2654551.70118885!2d-114.70118885!3d34.1682186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872ba8b841f9978d%3A0x14f8c9a91ae3612a!2sArizona%2C%20EE.%20UU.!5e0!3m2!1ses-419!2smx!4v1690166014687!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>
+                    <span class="logo-grupo" style="color: #fff;">GRUPO</span>
+                    <span class="logo-cots">COTS</span>
+                </h3>
+                <p class="footer-description">{{ __('messages.footer_description') }}</p>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-info">
-                    <h3>
-                        <span class="logo-grupo" style="color: #fff;">GRUPO</span>
-                        <span class="logo-cots">COTS</span>
-                    </h3>
-                    <p class="footer-description">Empresa líder en desarrollo de sistemas informáticos y aplicaciones web con la más alta e innovadora tecnología para contribuir al desarrollo tecnológico en México y el extranjero.</p>
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Arizona, Pima</p>
-                        </div>
-                        <!--<div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <p>+1 928 750 4918</p>
-                        </div>-->
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p> efigueroa@grupocots.com</p>
-                        </div>
-                                      <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-   <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
-</div>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>{{ __('messages.footer_location') }}</p>
+                    </div>
 
-                </div>
-                </div>
-                <div class="footer-links">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul class="footer-nav">
-                        <li><a href="home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
-                        <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
-                        <li><a href="estructura-organizacional"><i class="fas fa-chevron-right"></i> estructura-organizacional</a></li>
-                        <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> Contacto</a></li>
-                        <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> Políticas</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Nuestros Servicios</h4>
-                    <ul class="footer-nav">
-                        <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
-                        <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
-                        <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
-                    </ul>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>{{ __('messages.footer_email') }}</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
+                    </div>
                 </div>
             </div>
 
-            <div class="footer-copyright">
-                <p>&copy; 2025 Grupo COTS. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <h4>{{ __('messages.quick_links') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Home"><i class="fas fa-chevron-right"></i> {{ __('messages.link_home') }}</a></li>
+                    <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> {{ __('messages.link_about') }}</a></li>
+                    <li><a href="Servicios"><i class="fas fa-chevron-right"></i> {{ __('messages.link_services') }}</a></li>
+                    <li><a href="Estructura-organizacional"><i class="fas fa-chevron-right"></i> {{ __('messages.link_structure') }}</a></li>
+                    <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> {{ __('messages.link_contact') }}</a></li>
+                    <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> {{ __('messages.link_policies') }}</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>{{ __('messages.our_services') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> {{ __('messages.service_nom') }}</a></li>
+                    <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> {{ __('messages.service_edu') }}</a></li>
+                    <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> {{ __('messages.service_clinic') }}</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+
+        <div class="footer-copyright">
+            <p>&copy; 2025 Grupo COTS. {{ __('messages.rights_reserved') }}</p>
+        </div>
+    </div>
+</footer>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>

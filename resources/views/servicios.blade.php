@@ -194,22 +194,21 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
             width: 100%;
         }
 
-        .contact-btn {
-            margin-left: 2rem;
+/*boton*/
+        .header-btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-left: 25px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
             display: inline-flex;
             align-items: center;
-            background: var(--gradient);
-            color: var(--white);
-            padding: 12px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            transition: var(--transition);
-            box-shadow: 0 4px 10px rgba(26, 158, 176, 0.3);
+            gap: 8px;
         }
-
+/**/
         .contact-btn:hover {
             box-shadow: 0 6px 15px rgba(26, 158, 176, 0.4);
             transform: translateY(-2px);
@@ -1100,7 +1099,6 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
                 transform: scale(1);
             }
         }
-
         .animate-fadeInUp {
             animation: fadeInUp 1s ease forwards;
         }
@@ -1136,18 +1134,141 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
         .animation-delay-500 {
             animation-delay: 0.5s;
         }
+  /* Language Dropdown -*/
+.language-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px; /* Espacio reducido alrededor del texto */
+    border-radius: 20px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.dropdown-toggle:hover {
+    background-color: var(--light); /* Color de fondo claro al pasar el mouse */
+    color: var(--primary);
+}
+
+.dropdown-toggle i {
+
+    font-size: 1.1em;
+
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 180px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Sombra suave y extendida */
+
+    padding: 8px 0; /* Padding solo vertical */
+    right: 0;   /* Alinea a la derecha */
+    z-index: 10; /* Para que se muestre encima de otros elementos. */
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;   /* Evita clics accidentales. */
+    transition: opacity 0.3s ease, transform 0.3s ease, pointer-events 0s ease; /* Transición suave */
+}
+.dropdown-menu.show {
+    opacity: 1;  /* Hace visible el menú */
+    transform: translateY(0);  /* Posición correcta */
+    pointer-events: auto;  /* Habilita la interactividad */
+    display: block;
+}
+
+.dropdown-menu a {
+    color: var(--text-dark);
+
+    padding: 10px 20px;
+
+
+    text-decoration: none;
+
+    display: flex;  /* Para alinear horizontalmente. */
+    align-items: center;
+    font-size: 1rem;
+    transition: var(--transition);
+
+    border-bottom: 1px solid #eee;
+    gap: 12px;
+}
+
+.dropdown-menu a:hover {
+    color: var(--primary);
+    background-color: #f7f7f7; /* Color de fondo al pasar el mouse */
+
+}
+.dropdown-menu a:last-of-type {
+    border-bottom: none;
+}
+.flag-icon {
+        width: 20px;
+        height: auto;
+        margin-right: 8px;
+       border-radius: 2px;
+
+    }
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        min-width: 150px;
+    }
+    /* Posicionamiento relativo para que el menú se ajuste al tamaño del contenedor. */
+    .language-dropdown {
+        position: static;
+        display: block;
+        margin: 0;
+    }
+     .dropdown-menu {
+         left: 0;  /* Alinea el menú desplegable con el borde izquierdo del boton. */
+    }
+}
     </style>
 </head>
 <body>
-    <!-- Preloader -->
-   <!-- <div class="preloader" id="preloader">
-        <div class="loader"></div>
-    </div> -->
-
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
-            <a href="home" class="logo">
+      <div class="language-dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown()">
+        {{ __('messages.language') }} <i class="fas fa-globe"></i>
+    </button>
+    <div class="dropdown-menu" id="languageMenu">
+        <a href="{{ url('es/Servicios') }}">{{ __('messages.spanish') }} <span class="flag-icon flag-icon-es"></span></a>
+        <a href="{{ url('en/Servicios') }}">{{ __('messages.english') }} <span class="flag-icon flag-icon-us"></span></a> </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+<script>
+  function toggleDropdown() {
+    document.getElementById('languageMenu').classList.toggle('show');
+  }
+
+  window.addEventListener('click', function (e) {
+    const menu = document.getElementById('languageMenu');
+    const toggle = document.querySelector('.dropdown-toggle');
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.remove('show');
+    }
+  });
+</script>
+            <a href="Home" class="logo">
                 <span class="logo-grupo">GRUPO</span>
                 <span class="logo-cots">COTS</span>
             </a>
@@ -1157,75 +1278,76 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
             </div>
 
             <nav id="mainNav">
-                <ul>
-                    <li><a href="home">Inicio</a></li>
-                    <li><a href="Nosotros">Nosotros</a></li>
-                    <li><a href="Servicios" class="active">Servicios</a></li>
-                    <li><a href="estructura-organizacional">estructura-organizacional</a></li>
-                    <li><a href="Politicas-de-seguridad">Políticas</a></li>
-                </ul>
-                <a href="Contactanos" class="contact-btn">Contáctanos <i class="fas fa-arrow-right"></i></a>
+              <ul class="nav-list">
+                <li class="nav-item"><a href="Home" class="nav-link ">{{ __('messages.inicio') }}</a></li>
+                <li class="nav-item"><a href="Nosotros" class="nav-link">{{ __('messages.nosotros') }}</a></li>
+                <li class="nav-item"><a href="Servicios" class="nav-link active">{{ __('messages.servicios') }}</a></li>
+                <li class="nav-item"><a href="Estructura-organizacional" class="nav-link">{{ __('messages.estructura') }}</a></li>
+                <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link">{{ __('messages.politicas') }}</a></li>
+            </ul>
+                <a href="Contactanos" class="header-btn active">{{ __('messages.contactanos') }} <i class="fas fa-arrow-right"></i></a>
             </nav>
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <div class="page-header-content" data-aos="fade-up">
-                <h1>Nuestros Servicios</h1>
-            </div>
+   <!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="page-header-content" data-aos="fade-up">
+            <h1>{{ __('messages.services_title') }}</h1>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Services Intro -->
-    <section class="services-intro">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Soluciones Tecnológicas a la Medida</h2>
-                <p>En Grupo COTS ofrecemos una gama completa de servicios de alta calidad diseñados para cubrir las necesidades específicas de cada sector. Nuestras soluciones se caracterizan por su innovación, eficiencia y adaptabilidad a los requerimientos particulares de cada cliente.</p>
-            </div>
+<!-- Services Intro -->
+<section class="services-intro">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>{{ __('messages.services_intro_title') }}</h2>
+            <p>{{ __('messages.services_intro_text') }}</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Service 1: COTS NOM-035 -->
-    <section id="cots-nom" class="service-item">
-        <div class="container">
-            <div class="service-grid">
-                <div class="service-content">
-                    <div class="service-icon animate-fadeInUp">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h2 class="service-title animate-fadeInUp animation-delay-100">COTS NOM-035</h2>
-                    <p class="service-description animate-fadeInUp animation-delay-200">Una aplicación Web que cuenta con un portal para empresas, sucursales y empleados con el objetivo de que estos logren apegarse a la Norma 035-STPS-2018, relacionada con la identificación, análisis y prevención de los factores de riesgo psicosocial en el trabajo.</p>
 
-                    <div class="service-benefits animate-fadeInUp animation-delay-300">
-                        <h3><i class="fas fa-check-circle"></i> Beneficios Principales</h3>
-                        <ul class="benefits-list">
-                            <li><i class="fas fa-check"></i> <span>Facilita el cumplimiento normativo obligatorio para empresas mexicanas</span></li>
-                            <li><i class="fas fa-check"></i> <span>Permite la identificación oportuna de factores de riesgo psicosocial</span></li>
-                            <li><i class="fas fa-check"></i> <span>Proporciona informes y estadísticas para la toma de decisiones</span></li>
-                            <li><i class="fas fa-check"></i> <span>Implementa medidas preventivas y correctivas de manera eficiente</span></li>
-                            <li><i class="fas fa-check"></i> <span>Mejora el entorno laboral y el bienestar de los colaboradores</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="target-clients animate-fadeInUp animation-delay-400">
-                        <h3><i class="fas fa-users"></i> Clientes Objetivo</h3>
-                        <p>Este servicio está especialmente diseñado para:</p>
-                        <ul>
-                            <li><i class="fas fa-building"></i> Empresas con más de 15 empleados</li>
-                            <li><i class="fas fa-industry"></i> Industrias manufactureras</li>
-                            <li><i class="fas fa-shopping-cart"></i> Comercios y servicios</li>
-                            <li><i class="fas fa-hospital"></i> Instituciones de salud</li>
-                            <li><i class="fas fa-graduation-cap"></i> Instituciones educativas</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-buttons animate-fadeInUp animation-delay-500">
-                        <a href="Contactanos" class="btn btn-primary"><i class="fas fa-headset"></i> Solicitar Demo</a>
-                    </div>
+   <!-- Service 1: COTS NOM-035 -->
+<section id="cots-nom" class="service-item">
+    <div class="container">
+        <div class="service-grid">
+            <div class="service-content">
+                <div class="service-icon animate-fadeInUp">
+                    <i class="fas fa-shield-alt"></i>
                 </div>
+                <h2 class="service-title animate-fadeInUp animation-delay-100">{{ __('messages.cots_nom035_title') }}</h2>
+                <p class="service-description animate-fadeInUp animation-delay-200">{{ __('messages.cots_nom035_description') }}</p>
+
+                <div class="service-benefits animate-fadeInUp animation-delay-300">
+                    <h3><i class="fas fa-check-circle"></i> {{ __('messages.main_benefits') }}</h3>
+                    <ul class="benefits-list">
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.nom035_benefit_1') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.nom035_benefit_2') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.nom035_benefit_3') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.nom035_benefit_4') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.nom035_benefit_5') }}</span></li>
+                    </ul>
+                </div>
+
+                <div class="target-clients animate-fadeInUp animation-delay-400">
+                    <h3><i class="fas fa-users"></i> {{ __('messages.target_clients') }}</h3>
+                    <p>{{ __('messages.nom035_target_text') }}</p>
+                    <ul>
+                        <li><i class="fas fa-building"></i> {{ __('messages.nom035_client_1') }}</li>
+                        <li><i class="fas fa-industry"></i> {{ __('messages.nom035_client_2') }}</li>
+                        <li><i class="fas fa-shopping-cart"></i> {{ __('messages.nom035_client_3') }}</li>
+                        <li><i class="fas fa-hospital"></i> {{ __('messages.nom035_client_4') }}</li>
+                        <li><i class="fas fa-graduation-cap"></i> {{ __('messages.nom035_client_5') }}</li>
+                    </ul>
+                </div>
+
+                <div class="service-buttons animate-fadeInUp animation-delay-500">
+                    <a href="Contactanos" class="btn btn-primary"><i class="fas fa-headset"></i> {{ __('messages.request_demo') }}</a>
+                </div>
+            </div>
 
                 <div class="service-image animate-fadeInRight">
                     <img src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="COTS NOM-035 Dashboard">
@@ -1233,79 +1355,77 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
             </div>
 
             <div class="service-features">
-                <div class="feature-item animate-zoomIn">
-                    <div class="feature-icon">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                    <h4 class="feature-title">Cuestionarios Digitales</h4>
-                    <p class="feature-description">Implementación digital de los cuestionarios requeridos por la NOM-035, con análisis automático de resultados.</p>
+            <div class="feature-item animate-zoomIn">
+                <div class="feature-icon">
+                    <i class="fas fa-clipboard-check"></i>
                 </div>
-
-                <div class="feature-item animate-zoomIn animation-delay-100">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h4 class="feature-title">Informes y Estadísticas</h4>
-                    <p class="feature-description">Generación de reportes estadísticos que permiten visualizar tendencias y áreas de oportunidad.</p>
+                <h4 class="feature-title">{{ __('messages.feature_nom_questionnaires') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_nom_questionnaires_desc') }}</p>
+            </div>
+            <div class="feature-item animate-zoomIn animation-delay-100">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-bar"></i>
                 </div>
-
-                <div class="feature-item animate-zoomIn animation-delay-200">
-                    <div class="feature-icon">
-                        <i class="fas fa-sitemap"></i>
-                    </div>
-                    <h4 class="feature-title">Estructura Organizacional</h4>
-                    <p class="feature-description">Gestión de sucursales y departamentos para una evaluación segmentada y precisa.</p>
+                <h4 class="feature-title">{{ __('messages.feature_nom_reports') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_nom_reports_desc') }}</p>
+            </div>
+            <div class="feature-item animate-zoomIn animation-delay-200">
+                <div class="feature-icon">
+                    <i class="fas fa-sitemap"></i>
                 </div>
-
-                <div class="feature-item animate-zoomIn animation-delay-300">
-                    <div class="feature-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <h4 class="feature-title">Plan de Acción</h4>
-                    <p class="feature-description">Herramientas para diseñar e implementar medidas correctivas basadas en los resultados obtenidos.</p>
+                <h4 class="feature-title">{{ __('messages.feature_nom_structure') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_nom_structure_desc') }}</p>
+            </div>
+            <div class="feature-item animate-zoomIn animation-delay-300">
+                <div class="feature-icon">
+                    <i class="fas fa-tasks"></i>
                 </div>
+                <h4 class="feature-title">{{ __('messages.feature_nom_action_plan') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_nom_action_plan_desc') }}</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Service 2: COTS Administrativo Educativo -->
-    <section id="cots-educativo" class="service-item">
-        <div class="container">
-            <div class="service-grid">
-                <div class="service-content">
-                    <div class="service-icon animate-fadeInUp">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h2 class="service-title animate-fadeInUp animation-delay-100">COTS Administrativo Educativo</h2>
-                    <p class="service-description animate-fadeInUp animation-delay-200">Un sistema de cómputo que le permite tener un control administrativo de todo lo que una escuela de cualquier tipo de educación necesita para llevar a cabo sus labores diarias, incluyendo gestión de alumnos, profesores, calificaciones, recursos y comunicación institucional.</p>
-
-                    <div class="service-benefits animate-fadeInUp animation-delay-300">
-                        <h3><i class="fas fa-check-circle"></i> Beneficios Principales</h3>
-                        <ul class="benefits-list">
-                            <li><i class="fas fa-check"></i> <span>Simplifica y optimiza los procesos administrativos</span></li>
-                            <li><i class="fas fa-check"></i> <span>Centraliza toda la información académica y administrativa</span></li>
-                            <li><i class="fas fa-check"></i> <span>Reduce errores y tiempos en la gestión escolar</span></li>
-                            <li><i class="fas fa-check"></i> <span>Mejora la comunicación entre todos los actores educativos</span></li>
-                            <li><i class="fas fa-check"></i> <span>Facilita la toma de decisiones estratégicas basadas en datos</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="target-clients animate-fadeInUp animation-delay-400">
-                        <h3><i class="fas fa-users"></i> Clientes Objetivo</h3>
-                        <p>Este sistema está especialmente diseñado para:</p>
-                        <ul>
-                            <li><i class="fas fa-child"></i> Escuelas de educación básica</li>
-                            <li><i class="fas fa-user-graduate"></i> Instituciones de educación media</li>
-                            <li><i class="fas fa-university"></i> Universidades</li>
-                            <li><i class="fas fa-book"></i> Centros de capacitación</li>
-                            <li><i class="fas fa-certificate"></i> Escuelas técnicas y especializadas</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-buttons animate-fadeInUp animation-delay-500">
-                        <a href="Contactanos" class="btn btn-primary"><i class="fas fa-headset"></i> Solicitar Demo</a>
-                    </div>
+<section id="cots-educativo" class="service-item">
+    <div class="container">
+        <div class="service-grid">
+            <div class="service-content">
+                <div class="service-icon animate-fadeInUp">
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
+                <h2 class="service-title animate-fadeInUp animation-delay-100">{{ __('messages.cots_edu_title') }}</h2>
+                <p class="service-description animate-fadeInUp animation-delay-200">{{ __('messages.cots_edu_description') }}</p>
+
+                <div class="service-benefits animate-fadeInUp animation-delay-300">
+                    <h3><i class="fas fa-check-circle"></i> {{ __('messages.main_benefits') }}</h3>
+                    <ul class="benefits-list">
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.edu_benefit_1') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.edu_benefit_2') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.edu_benefit_3') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.edu_benefit_4') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.edu_benefit_5') }}</span></li>
+                    </ul>
+                </div>
+
+                <div class="target-clients animate-fadeInUp animation-delay-400">
+                    <h3><i class="fas fa-users"></i> {{ __('messages.target_clients') }}</h3>
+                    <p>{{ __('messages.edu_target_text') }}</p>
+                    <ul>
+                        <li><i class="fas fa-child"></i> {{ __('messages.edu_client_1') }}</li>
+                        <li><i class="fas fa-user-graduate"></i> {{ __('messages.edu_client_2') }}</li>
+                        <li><i class="fas fa-university"></i> {{ __('messages.edu_client_3') }}</li>
+                        <li><i class="fas fa-book"></i> {{ __('messages.edu_client_4') }}</li>
+                        <li><i class="fas fa-certificate"></i> {{ __('messages.edu_client_5') }}</li>
+                    </ul>
+                </div>
+
+                <div class="service-buttons animate-fadeInUp animation-delay-500">
+                    <a href="Contactanos" class="btn btn-primary"><i class="fas fa-headset"></i> {{ __('messages.request_demo') }}</a>
+                </div>
+            </div>
 
                 <div class="service-image floating-animation">
                     <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="COTS Administrativo Educativo Dashboard">
@@ -1313,191 +1433,186 @@ Aquí tienes el código HTML para la página "Servicios" que presenta detalladam
                 </div>
             </div>
 
-            <div class="service-features">
-                <div class="feature-item animate-zoomIn">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h4 class="feature-title">Gestión de Estudiantes</h4>
-                    <p class="feature-description">Administración completa de expedientes, asistencia, calificaciones y seguimiento personalizado.</p>
+              <div class="service-features">
+            <div class="feature-item animate-zoomIn">
+                <div class="feature-icon">
+                    <i class="fas fa-user-friends"></i>
                 </div>
-
-                <div class="feature-item animate-zoomIn animation-delay-100">
-                    <div class="feature-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
-                    <h4 class="feature-title">Control Docente</h4>
-                    <p class="feature-description">Asignación de materias, horarios, evaluación de desempeño y administración de recursos didácticos.</p>
+                <h4 class="feature-title">{{ __('messages.feature_edu_students') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_edu_students_desc') }}</p>
+            </div>
+            <div class="feature-item animate-zoomIn animation-delay-100">
+                <div class="feature-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
                 </div>
-
-                <div class="feature-item animate-zoomIn animation-delay-200">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                    </div>
-                    <h4 class="feature-title">Gestión Financiera</h4>
-                    <p class="feature-description">Control de colegiaturas, pagos, becas y generación de reportes financieros detallados.</p>
+                <h4 class="feature-title">{{ __('messages.feature_edu_teachers') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_edu_teachers_desc') }}</p>
+            </div>
+            <div class="feature-item animate-zoomIn animation-delay-200">
+                <div class="feature-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
                 </div>
-
-                <div class="feature-item animate-zoomIn animation-delay-300">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h4 class="feature-title">Planificación Académica</h4>
-                    <p class="feature-description">Creación y gestión de planes de estudio, calendario escolar y programación de actividades.</p>
+                <h4 class="feature-title">{{ __('messages.feature_edu_finance') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_edu_finance_desc') }}</p>
+            </div>
+            <div class="feature-item animate-zoomIn animation-delay-300">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
                 </div>
+                <h4 class="feature-title">{{ __('messages.feature_edu_schedule') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_edu_schedule_desc') }}</p>
             </div>
         </div>
-    </section>
-
-    <!-- Service 3: COTS Clínico -->
-    <section id="cots-clinico" class="service-item">
-        <div class="container">
-            <div class="service-grid">
-                <div class="service-content">
-                    <div class="service-icon animate-fadeInUp">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h2 class="service-title animate-fadeInUp animation-delay-100">COTS Clínico</h2>
-                    <p class="service-description animate-fadeInUp animation-delay-200">Un software orientado a facilitar una mejor experiencia para los pacientes y los proveedores de salud. Una aplicación Web fácil, segura y eficiente que optimiza la gestión de citas, historiales médicos y seguimiento de tratamientos, mejorando la calidad de atención y la eficiencia operativa de las instituciones de salud.</p>
-
-                    <div class="service-benefits animate-fadeInUp animation-delay-300">
-                        <h3><i class="fas fa-check-circle"></i> Beneficios Principales</h3>
-                        <ul class="benefits-list">
-                            <li><i class="fas fa-check"></i> <span>Optimiza la gestión de citas y reduce tiempos de espera</span></li>
-                            <li><i class="fas fa-check"></i> <span>Mantiene historiales clínicos completos y seguros</span></li>
-                            <li><i class="fas fa-check"></i> <span>Automatiza procesos administrativos y de facturación</span></li>
-                            <li><i class="fas fa-check"></i> <span>Mejora la comunicación entre personal médico y pacientes</span></li>
-                            <li><i class="fas fa-check"></i> <span>Garantiza la seguridad y confidencialidad de la información</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="target-clients animate-fadeInUp animation-delay-400">
-                        <h3><i class="fas fa-users"></i> Clientes Objetivo</h3>
-                        <p>Esta solución está especialmente diseñada para:</p>
-                        <ul>
-                            <li><i class="fas fa-clinic-medical"></i> Consultorios médicos</li>
-                            <li><i class="fas fa-hospital"></i> Clínicas y hospitales</li>
-                            <li><i class="fas fa-tooth"></i> Consultorios dentales</li>
-                            <li><i class="fas fa-notes-medical"></i> Laboratorios clínicos</li>
-                            <li><i class="fas fa-user-md"></i> Especialistas médicos</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-buttons animate-fadeInUp animation-delay-500">
-                        <a href="Contacto" class="btn btn-primary"><i class="fas fa-headset"></i> Solicitar Demo</a>
-                    </div>
+    </div>
+</section>
+  <!-- Service 3: COTS Clínico -->
+<section id="cots-clinico" class="service-item">
+    <div class="container">
+        <div class="service-grid">
+            <div class="service-content">
+                <div class="service-icon animate-fadeInUp">
+                    <i class="fas fa-heartbeat"></i>
                 </div>
+                <h2 class="service-title animate-fadeInUp animation-delay-100">{{ __('messages.cots_clinico_title') }}</h2>
+                <p class="service-description animate-fadeInUp animation-delay-200">{{ __('messages.cots_clinico_description') }}</p>
 
-                <div class="service-image animate-fadeInLeft">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="COTS Clínico Dashboard">
-                </div>
-            </div>
-
-            <div class="service-features">
-                <div class="feature-item animate-zoomIn">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h4 class="feature-title">Gestión de Citas</h4>
-                    <p class="feature-description">Sistema inteligente de agendamiento con recordatorios automáticos y optimización de horarios.</p>
-                </div>
-
-                <div class="feature-item animate-zoomIn animation-delay-100">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-medical"></i>
-                    </div>
-                    <h4 class="feature-title">Historiales Clínicos Digitales</h4>
-                    <p class="feature-description">Expedientes electrónicos completos con acceso seguro y trazabilidad de cambios.</p>
-                </div>
-
-                <div class="feature-item animate-zoomIn animation-delay-200">
-                    <div class="feature-icon">
-                        <i class="fas fa-pills"></i>
-                    </div>
-                    <h4 class="feature-title">Control de Tratamientos</h4>
-                    <p class="feature-description">Seguimiento detallado de medicamentos, procedimientos y evolución de pacientes.</p>
-                </div>
-
-                <div class="feature-item animate-zoomIn animation-delay-300">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h4 class="feature-title">Reportes y Estadísticas</h4>
-                    <p class="feature-description">Generación automática de informes clínicos y administrativos para la toma de decisiones.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content" data-aos="zoom-in">
-                <h2>¿Listo para transformar su organización?</h2>
-                <p>Descubra cómo nuestras soluciones tecnológicas pueden optimizar sus procesos y mejorar su eficiencia operativa.</p>
-                <a href="Contactanos" class="cta-btn">Solicitar una consulta <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </section>
-
-   <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-info">
-                    <h3>
-                        <span class="logo-grupo" style="color: #fff;">GRUPO</span>
-                        <span class="logo-cots">COTS</span>
-                    </h3>
-                    <p class="footer-description">Empresa líder en desarrollo de sistemas informáticos y aplicaciones web con la más alta e innovadora tecnología para contribuir al desarrollo tecnológico en México y el extranjero.</p>
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Arizona, Pima</p>
-                        </div>
-                      <!--  <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <p>+1 928 750 4918</p>
-                        </div>-->
-                       <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p> efigueroa@grupocots.com</p>
-                        </div>
-                                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-   <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
-</div>
-
-                    </div>
-                </div>
-
-                 <div class="footer-links">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul class="footer-nav">
-                        <li><a href="home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
-                        <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
-                        <li><a href="estructura-organizacional"><i class="fas fa-chevron-right"></i> estructura-organizacional</a></li>
-                        <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> Contacto</a></li>
-                        <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> Políticas</a></li>
+                <div class="service-benefits animate-fadeInUp animation-delay-300">
+                    <h3><i class="fas fa-check-circle"></i> {{ __('messages.benefits_title') ?? 'Beneficios Principales' }}</h3>
+                    <ul class="benefits-list">
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.clinico_benefit_1') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.clinico_benefit_2') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.clinico_benefit_3') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.clinico_benefit_4') }}</span></li>
+                        <li><i class="fas fa-check"></i> <span>{{ __('messages.clinico_benefit_5') }}</span></li>
                     </ul>
                 </div>
 
-             <div class="footer-links">
-                    <h4>Nuestros Servicios</h4>
-                    <ul class="footer-nav">
-                        <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
-                        <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
-                        <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
+                <div class="target-clients animate-fadeInUp animation-delay-400">
+                    <h3><i class="fas fa-users"></i> {{ __('messages.target_clients_title') ?? 'Clientes Objetivo' }}</h3>
+                    <p>{{ __('messages.clinico_target_text') }}</p>
+                    <ul>
+                        <li><i class="fas fa-clinic-medical"></i> {{ __('messages.clinico_client_1') }}</li>
+                        <li><i class="fas fa-hospital"></i> {{ __('messages.clinico_client_2') }}</li>
+                        <li><i class="fas fa-tooth"></i> {{ __('messages.clinico_client_3') }}</li>
+                        <li><i class="fas fa-notes-medical"></i> {{ __('messages.clinico_client_4') }}</li>
+                        <li><i class="fas fa-user-md"></i> {{ __('messages.clinico_client_5') }}</li>
                     </ul>
+                </div>
+
+                <div class="service-buttons animate-fadeInUp animation-delay-500">
+                    <a href="Contacto" class="btn btn-primary"><i class="fas fa-headset"></i> {{ __('messages.cta_cots_clinico_button') }}</a>
                 </div>
             </div>
 
-            <div class="footer-copyright">
-                <p>&copy; 2025 Grupo COTS. Todos los derechos reservados.</p>
+            <div class="service-image animate-fadeInLeft">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="COTS Clínico Dashboard">
             </div>
         </div>
-    </footer>
+
+        <div class="service-features">
+            <div class="feature-item animate-zoomIn">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h4 class="feature-title">{{ __('messages.feature_clinico_appointments') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_clinico_appointments_desc') }}</p>
+            </div>
+
+            <div class="feature-item animate-zoomIn animation-delay-100">
+                <div class="feature-icon">
+                    <i class="fas fa-file-medical"></i>
+                </div>
+                <h4 class="feature-title">{{ __('messages.feature_clinico_records') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_clinico_records_desc') }}</p>
+            </div>
+
+            <div class="feature-item animate-zoomIn animation-delay-200">
+                <div class="feature-icon">
+                    <i class="fas fa-pills"></i>
+                </div>
+                <h4 class="feature-title">{{ __('messages.feature_clinico_treatments') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_clinico_treatments_desc') }}</p>
+            </div>
+
+            <div class="feature-item animate-zoomIn animation-delay-300">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h4 class="feature-title">{{ __('messages.feature_clinico_reports') }}</h4>
+                <p class="feature-description">{{ __('messages.feature_clinico_reports_desc') }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content" data-aos="zoom-in">
+            <h2>{{ __('messages.cta_cots_clinico_title') }}</h2>
+            <p>{{ __('messages.cta_cots_clinico_text') }}</p>
+            <a href="Contactanos" class="cta-btn">{{ __('messages.cta_cots_clinico_button') }} <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+
+  <!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>
+                    <span class="logo-grupo" style="color: #fff;">GRUPO</span>
+                    <span class="logo-cots">COTS</span>
+                </h3>
+                <p class="footer-description">{{ __('messages.footer_description') }}</p>
+
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>{{ __('messages.footer_location') }}</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>{{ __('messages.footer_email') }}</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>{{ __('messages.quick_links') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Home"><i class="fas fa-chevron-right"></i> {{ __('messages.link_home') }}</a></li>
+                    <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> {{ __('messages.link_about') }}</a></li>
+                    <li><a href="Servicios"><i class="fas fa-chevron-right"></i> {{ __('messages.link_services') }}</a></li>
+                    <li><a href="Estructura-organizacional"><i class="fas fa-chevron-right"></i> {{ __('messages.link_structure') }}</a></li>
+                    <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> {{ __('messages.link_contact') }}</a></li>
+                    <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> {{ __('messages.link_policies') }}</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>{{ __('messages.our_services') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> {{ __('messages.service_nom') }}</a></li>
+                    <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> {{ __('messages.service_edu') }}</a></li>
+                    <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> {{ __('messages.service_clinic') }}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <p>&copy; 2025 Grupo COTS. {{ __('messages.rights_reserved') }}</p>
+        </div>
+    </div>
+</footer>
 
     <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

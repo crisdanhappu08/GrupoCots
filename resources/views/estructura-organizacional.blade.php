@@ -1097,7 +1097,111 @@
                 font-size: 1.1rem;
             }
         }
+  /* Language Dropdown -*/
+.language-dropdown {
+    position: relative;
+    display: inline-block;
+}
 
+.dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px; /* Espacio reducido alrededor del texto */
+    border-radius: 20px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.dropdown-toggle:hover {
+    background-color: var(--light); /* Color de fondo claro al pasar el mouse */
+    color: var(--primary);
+}
+
+.dropdown-toggle i {
+
+    font-size: 1.1em;
+
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 180px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Sombra suave y extendida */
+
+    padding: 8px 0; /* Padding solo vertical */
+    right: 0;   /* Alinea a la derecha */
+    z-index: 10; /* Para que se muestre encima de otros elementos. */
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;   /* Evita clics accidentales. */
+    transition: opacity 0.3s ease, transform 0.3s ease, pointer-events 0s ease; /* Transición suave */
+}
+.dropdown-menu.show {
+    opacity: 1;  /* Hace visible el menú */
+    transform: translateY(0);  /* Posición correcta */
+    pointer-events: auto;  /* Habilita la interactividad */
+    display: block;
+}
+
+.dropdown-menu a {
+    color: var(--text-dark);
+
+    padding: 10px 20px;
+
+
+    text-decoration: none;
+
+    display: flex;  /* Para alinear horizontalmente. */
+    align-items: center;
+    font-size: 1rem;
+    transition: var(--transition);
+
+    border-bottom: 1px solid #eee;
+    gap: 12px;
+}
+
+.dropdown-menu a:hover {
+    color: var(--primary);
+    background-color: #f7f7f7; /* Color de fondo al pasar el mouse */
+
+}
+.dropdown-menu a:last-of-type {
+    border-bottom: none;
+}
+.flag-icon {
+        width: 20px;
+        height: auto;
+        margin-right: 8px;
+       border-radius: 2px;
+
+    }
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        min-width: 150px;
+    }
+    /* Posicionamiento relativo para que el menú se ajuste al tamaño del contenedor. */
+    .language-dropdown {
+        position: static;
+        display: block;
+        margin: 0;
+    }
+     .dropdown-menu {
+         left: 0;  /* Alinea el menú desplegable con el borde izquierdo del boton. */
+    }
+}
     </style>
 </head>
 <style>
@@ -1111,7 +1215,30 @@
     <!-- Header -->
     <header class="header" id="header">
         <div class="container header-container">
-            <a href="home" class="logo">
+     <div class="language-dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown()">
+        {{ __('messages.language') }} <i class="fas fa-globe"></i>
+    </button>
+    <div class="dropdown-menu" id="languageMenu">
+        <a href="{{ url('es/Estructura-organizacional') }}">{{ __('messages.spanish') }} <span class="flag-icon flag-icon-es"></span></a>
+        <a href="{{ url('en/Estructura-organizacional') }}">{{ __('messages.english') }} <span class="flag-icon flag-icon-us"></span></a> </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+<script>
+  function toggleDropdown() {
+    document.getElementById('languageMenu').classList.toggle('show');
+  }
+
+  window.addEventListener('click', function (e) {
+    const menu = document.getElementById('languageMenu');
+    const toggle = document.querySelector('.dropdown-toggle');
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.remove('show');
+    }
+  });
+</script>
+            <a href="Home" class="logo">
                 <span class="logo-grupo">GRUPO</span>
                 <span class="logo-cots">COTS</span>
             </a>
@@ -1120,231 +1247,234 @@
                 <i class="fas fa-bars"></i>
             </div>
 
-           <div class="nav-menu" id="navMenu">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="home" class="nav-link active">Inicio</a></li>
-                    <li class="nav-item"><a href="Nosotros" class="nav-link">Nosotros</a></li>
-                    <li class="nav-item"><a href="Servicios" class="nav-link">Servicios</a></li>
-                    <li class="nav-item"><a href="estructura-organizacional" class="nav-link">estructura-organizacional</a></li>
-                    <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link">Políticas</a></li>
-                </ul>
-                <a href="Contactanos" class="header-btn">Contáctanos <i class="fas fa-arrow-right"></i></a>
-            </div>
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="Home" class="nav-link ">{{ __('messages.inicio') }}</a></li>
+                <li class="nav-item"><a href="Nosotros" class="nav-link">{{ __('messages.nosotros') }}</a></li>
+                <li class="nav-item"><a href="Servicios" class="nav-link">{{ __('messages.servicios') }}</a></li>
+                <li class="nav-item"><a href="Estructura-organizacional" class="nav-link active">{{ __('messages.estructura') }}</a></li>
+                <li class="nav-item"><a href="Politicas-de-seguridad" class="nav-link">{{ __('messages.politicas') }}</a></li>
+            </ul>
+            <a href="Contactanos" class="header-btn active">{{ __('messages.contactanos') }} <i class="fas fa-arrow-right"></i></a>
+        </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg-pattern"></div>
-        <div class="hero-bg-overlay"></div>
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title fade-in-up">Estructura Organizacional</h1>
-                <p class="hero-description fade-in-up delay-200">Conozca nuestra organización, valores y el equipo que hace posible brindar soluciones tecnológicas de calidad.</p>
-                <a href="#team" class="hero-btn fade-in-up delay-400">
-                    <i class="fas fa-users"></i>
-                    Conocer nuestro equipo
-                </a>
-            </div>
+   <!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-bg-overlay"></div>
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h1 class="hero-title fade-in-up">{{ __('messages.org_structure_title') }}</h1>
+            <p class="hero-description fade-in-up delay-200">{{ __('messages.org_structure_description') }}</p>
+            <a href="#team" class="hero-btn fade-in-up delay-400">
+                <i class="fas fa-users"></i>
+                {{ __('messages.org_structure_button') }}
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section class="about-section">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content fade-in-left">
-                    <h2>Quiénes Somos</h2>
-                    <p>Grupo COTS es una empresa mexicana fundada en el año 2016 con el propósito de brindar soluciones tecnológicas eficientes al sector público y privado. Desde nuestros inicios, nos hemos enfocado en el desarrollo de sistemas informáticos y aplicaciones web que permiten mejorar la toma de decisiones mediante el análisis y la gestión efectiva de la información.</p>
+<!-- About Section -->
+<section class="about-section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content fade-in-left">
+                <h2>{{ __('messages.about_title') }}</h2>
+                <p>{{ __('messages.about_paragraph_1') }}</p>
 
-                    <p>A lo largo de los años, hemos identificado nuevas necesidades en diversos sectores, lo cual nos ha impulsado a ampliar nuestra oferta de servicios y trabajar en equipo para ofrecer soluciones innovadoras, confiables y adaptadas a cada contexto.</p>
+                <p>{{ __('messages.about_paragraph_2') }}</p>
 
-                    <div class="about-highlight fade-in-left delay-300">
-                        <p>Nuestra meta es continuar creciendo como un referente en el desarrollo tecnológico en México y contribuir al avance digital de las organizaciones que confían en nosotros.</p>
-                    </div>
-                </div>
-
-                <div class="about-image fade-in-right">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Equipo de trabajo Grupo COTS">
+                <div class="about-highlight fade-in-left delay-300">
+                    <p>{{ __('messages.about_paragraph_3') }}</p>
                 </div>
             </div>
+
+            <div class="about-image fade-in-right">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="{{ __('messages.about_image_alt') }}">
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Values Section -->
-    <section class="values-section">
-        <div class="container values-container">
-            <h2 class="section-title fade-in-up">Nuestros Valores</h2>
+<section class="values-section">
+    <div class="container values-container">
+        <h2 class="section-title fade-in-up">{{ __('messages.values_title') }}</h2>
 
-            <div class="values-wrapper">
-                <div class="values-column">
-                    <div class="value-card fade-in-up delay-200">
-                        <div class="value-icon">
-                            <i class="fas fa-lightbulb"></i>
-                            <h3>Innovación</h3>
-                        </div>
-                        <p class="value-description">Buscamos constantemente nuevas formas de mejorar nuestros productos y servicios, incorporando tecnologías emergentes para ofrecer soluciones de vanguardia.</p>
+        <div class="values-wrapper">
+            <div class="values-column">
+                <div class="value-card fade-in-up delay-200">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>{{ __('messages.value_innovation_title') }}</h3>
                     </div>
-
-                    <div class="value-card fade-in-up delay-300">
-                        <div class="value-icon">
-                            <i class="fas fa-shield-alt"></i>
-                            <h3>Responsabilidad</h3>
-                        </div>
-                        <p class="value-description">Asumimos el compromiso con nuestros clientes y el impacto de nuestro trabajo, garantizando la confidencialidad y seguridad de la información.</p>
-                    </div>
+                    <p class="value-description">{{ __('messages.value_innovation_desc') }}</p>
                 </div>
 
-                <div class="values-column">
-                    <div class="value-card fade-in-up delay-400">
-                        <div class="value-icon">
-                            <i class="fas fa-award"></i>
-                            <h3>Profesionalismo</h3>
+                <div class="value-card fade-in-up delay-300">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>{{ __('messages.value_responsibility_title') }}</h3>
+                    </div>
+                    <p class="value-description">{{ __('messages.value_responsibility_desc') }}</p>
+                </div>
+            </div>
+
+            <div class="values-column">
+                <div class="value-card fade-in-up delay-400">
+                    <div class="value-icon">
+                        <i class="fas fa-award"></i>
+                        <h3>{{ __('messages.value_professionalism_title') }}</h3>
+                    </div>
+                    <p class="value-description">{{ __('messages.value_professionalism_desc') }}</p>
+                </div>
+
+                <div class="value-card fade-in-up delay-500">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                        <h3>{{ __('messages.value_collaboration_title') }}</h3>
+                    </div>
+                    <p class="value-description">{{ __('messages.value_collaboration_desc') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Structure Section -->
+<section id="team" class="team-section">
+    <div class="container">
+        <h2 class="section-title fade-in-up">{{ __('messages.team_structure_title') }}</h2>
+
+        <div class="team-intro fade-in-up delay-200">
+            <p>{{ __('messages.team_intro') }}</p>
+        </div>
+
+        <div class="team-structure fade-in-up delay-300">
+            <div class="structure-bg"></div>
+            <div class="structure-content">
+                <div class="structure-header">
+                    <h3>{{ __('messages.team_header_title') }}</h3>
+                    <p>{{ __('messages.team_header_subtitle') }}</p>
+                </div>
+
+                <div class="structure-grid">
+                    <div class="structure-level level-main">
+                        <div class="structure-node">
+                            <h4>{{ __('messages.level_main_title') }}</h4>
+                            <p>{{ __('messages.level_main_desc') }}</p>
                         </div>
-                        <p class="value-description">Mantenemos altos estándares de calidad en todos nuestros desarrollos y servicios, aplicando las mejores prácticas de la industria.</p>
                     </div>
 
-                    <div class="value-card fade-in-up delay-500">
-                        <div class="value-icon">
-                            <i class="fas fa-users"></i>
-                            <h3>Colaboración</h3>
+                    <div class="structure-level level-secondary">
+                        <div class="secondary-item">
+                            <div class="structure-subnode">
+                                <h4>{{ __('messages.level_software_title') }}</h4>
+                                <p>{{ __('messages.level_software_desc') }}</p>
+                            </div>
                         </div>
-                        <p class="value-description">Creemos en el poder del trabajo en equipo y las alianzas estratégicas para crear soluciones más completas y efectivas para nuestros clientes.</p>
+
+                        <div class="secondary-item">
+                            <div class="structure-subnode">
+                                <h4>{{ __('messages.level_consulting_title') }}</h4>
+                                <p>{{ __('messages.level_consulting_desc') }}</p>
+                            </div>
+                        </div>
+
+                        <div class="secondary-item">
+                            <div class="structure-subnode">
+                                <h4>{{ __('messages.level_support_title') }}</h4>
+                                <p>{{ __('messages.level_support_desc') }}</p>
+                            </div>
+                        </div>
+
+                        <div class="secondary-item">
+                            <div class="structure-subnode">
+                                <h4>{{ __('messages.level_admin_title') }}</h4>
+                                <p>{{ __('messages.level_admin_desc') }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Team Structure Section -->
-    <section id="team" class="team-section">
-        <div class="container">
-            <h2 class="section-title fade-in-up">Estructura del Equipo</h2>
 
-            <div class="team-intro fade-in-up delay-200">
-                <p>Nuestro equipo está conformado por profesionales especializados en distintas áreas, trabajando bajo una estructura organizativa flexible y colaborativa que nos permite responder ágilmente a los cambios tecnológicos y garantizar un servicio de alta calidad.</p>
-            </div>
+ <!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content fade-in-up">
+            <h2 class="cta-title">{{ __('messages.cta_team_title') }}</h2>
+            <p class="cta-text">{{ __('messages.cta_team_text') }}</p>
+            <a href="Contactanos" class="cta-btn">
+                {{ __('messages.cta_team_button') }} <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
 
-            <div class="team-structure fade-in-up delay-300">
-                <div class="structure-bg"></div>
-                <div class="structure-content">
-                    <div class="structure-header">
-                        <h3>Equipo Multidisciplinario</h3>
-                        <p>Organización estratégica para brindar soluciones integrales</p>
+
+
+  <!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>
+                    <span class="logo-grupo" style="color: #fff;">GRUPO</span>
+                    <span class="logo-cots">COTS</span>
+                </h3>
+                <p class="footer-description">{{ __('messages.footer_description') }}</p>
+
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>{{ __('messages.footer_location') }}</p>
                     </div>
 
-                    <div class="structure-grid">
-                        <div class="structure-level level-main">
-                            <div class="structure-node">
-                                <h4>Dirección General</h4>
-                                <p>Visión estratégica y supervisión del cumplimiento de objetivos</p>
-                            </div>
-                        </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>{{ __('messages.footer_email') }}</p>
+                    </div>
 
-                        <div class="structure-level level-secondary">
-                            <div class="secondary-item">
-                                <div class="structure-subnode">
-                                    <h4>Área de Desarrollo de Software</h4>
-                                    <p>Creación, mantenimiento y mejora de plataformas digitales</p>
-                                </div>
-                            </div>
-
-                            <div class="secondary-item">
-                                <div class="structure-subnode">
-                                    <h4>Área de Consultoría y Análisis</h4>
-                                    <p>Entendimiento de necesidades y propuesta de soluciones</p>
-                                </div>
-                            </div>
-
-                            <div class="secondary-item">
-                                <div class="structure-subnode">
-                                    <h4>Soporte Técnico</h4>
-                                    <p>Acompañamiento continuo a los usuarios</p>
-                                </div>
-                            </div>
-
-                            <div class="secondary-item">
-                                <div class="structure-subnode">
-                                    <h4>Administración y Gestión</h4>
-                                    <p>Coordinación de recursos y procesos internos</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content fade-in-up">
-                <h2 class="cta-title">¿Listo para trabajar con nosotros?</h2>
-                <p class="cta-text">Descubra cómo nuestro equipo puede ayudarle a transformar digitalmente su organización.</p>
-                <a href="Contactanos" class="cta-btn">Contáctenos hoy mismo <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-info">
-                    <h3>
-                        <span class="logo-grupo" style="color: #fff;">GRUPO</span>
-                        <span class="logo-cots">COTS</span>
-                    </h3>
-                    <p class="footer-description">Empresa líder en desarrollo de sistemas informáticos y aplicaciones web con la más alta e innovadora tecnología para contribuir al desarrollo tecnológico en México y el extranjero.</p>
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Arizona, Pima</p>
-                        </div>
-                        <!--<div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <p>+1 928 750 4918</p>
-                        </div>-->
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p> efigueroa@grupocots.com</p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-   <p><a href="https://grupocots.godaddysites.com/" target="_blank" rel="noopener noreferrer">grupocots.com</a></p>
-</div>
-                    </div>
-                </div>
-
-              <div class="footer-links">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul class="footer-nav">
-                        <li><a href="home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
-                        <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
-                        <li><a href="Servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
-                        <li><a href="estructura-organizacional"><i class="fas fa-chevron-right"></i> estructura-organizacional</a></li>
-                        <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> Contacto</a></li>
-                        <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> Políticas</a></li>
-                    </ul>
-                </div>
-
-                 <div class="footer-links">
-                    <h4>Nuestros Servicios</h4>
-                    <ul class="footer-nav">
-                        <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> COTS NOM-035</a></li>
-                        <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> COTS Administrativo Educativo</a></li>
-                        <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> COTS Clínico</a></li>
-                    </ul>
-                </div>
+            <div class="footer-links">
+                <h4>{{ __('messages.quick_links') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Home"><i class="fas fa-chevron-right"></i> {{ __('messages.link_home') }}</a></li>
+                    <li><a href="Nosotros"><i class="fas fa-chevron-right"></i> {{ __('messages.link_about') }}</a></li>
+                    <li><a href="Servicios"><i class="fas fa-chevron-right"></i> {{ __('messages.link_services') }}</a></li>
+                    <li><a href="Estructura-organizacional"><i class="fas fa-chevron-right"></i> {{ __('messages.link_structure') }}</a></li>
+                    <li><a href="Contactanos"><i class="fas fa-chevron-right"></i> {{ __('messages.link_contact') }}</a></li>
+                    <li><a href="Politicas-de-seguridad"><i class="fas fa-chevron-right"></i> {{ __('messages.link_policies') }}</a></li>
+                </ul>
             </div>
 
-            <div class="footer-copyright">
-                <p>&copy; 2025 Grupo COTS. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <h4>{{ __('messages.our_services') }}</h4>
+                <ul class="footer-nav">
+                    <li><a href="Servicios#cots-nom"><i class="fas fa-chevron-right"></i> {{ __('messages.service_nom') }}</a></li>
+                    <li><a href="Servicios#cots-educativo"><i class="fas fa-chevron-right"></i> {{ __('messages.service_edu') }}</a></li>
+                    <li><a href="Servicios#cots-clinico"><i class="fas fa-chevron-right"></i> {{ __('messages.service_clinic') }}</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
 
+        <div class="footer-copyright">
+            <p>&copy; 2025 Grupo COTS. {{ __('messages.rights_reserved') }}</p>
+        </div>
+    </div>
+</footer>
     <!-- JavaScript -->
     <script>
         // Menu Toggle
