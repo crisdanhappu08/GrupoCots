@@ -19,7 +19,7 @@ Route::get('{lang}/Estructura-organizacional', function ($lang) {
 
 Route::get('{lang}/Servicios', function ($lang) {
     App::setLocale($lang);
-    return view('Servicios');
+    return view('servicios');
 });
 
 Route::get('{lang}/Politicas-de-seguridad', function ($lang) {
@@ -29,7 +29,7 @@ Route::get('{lang}/Politicas-de-seguridad', function ($lang) {
 
 Route::get('{lang}/Contactanos', function ($lang) {
     App::setLocale($lang);
-    return view('contacto');
+    return view('Contacto');
 });
 
 
